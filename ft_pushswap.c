@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/06 15:58:19 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/07 14:34:14 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,36 @@ int		ft_create_a_pile(t_pile **start, int argc, char **argv)
 	}
 	return (1);
 }
-/*
+
+void	ft_sort_pile(t_pile **pa, t_pile **pb, int argc, char argv)
+{
+	int		state;
+	t_pile	*tmp;
+
+	state = 0;
+	while(state == 0)
+	{
+		tmp = *pa;
+		if (tmp->next)
+		{
+			if (tmp->next->content < tmp->content)
+			{
+				ft_sa(*pa);
+				ft_printf("sa\n");
+			}
+			ft_ra(pa);
+			ft_printf("ra");
+		}
+		state = ft_check_sort(pa, pb);
+	}	
+}
+
 int main(int argc, char **argv)
 {
 	t_pile	*start;
+	t_pile	*pb;
 
+	pb = NULL;
 	start = NULL;
 	if (argc > 1)
 	{
@@ -70,7 +95,7 @@ int main(int argc, char **argv)
 			ft_printf("Error\n");
 			return (0);
 		}
-		ft_sort_pile(&start, argc, argv);
+		ft_sort_pile(&start, &pb, argc, argv);
 	}
 	return (0);
-}*/
+}

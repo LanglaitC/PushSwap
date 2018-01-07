@@ -6,38 +6,38 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/06 16:03:18 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/07 14:14:04 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void ft_choose_actions(t_pile *pa, t_pile *pb, char *line)
+void ft_choose_actions(t_pile **pa, t_pile **pb, char *line)
 {
 	if (ft_strequ(line, "sa"))
-		ft_sa(pa);
+		ft_sa(*pa);
 	else if (ft_strequ(line, "sb"))
-		ft_sb(pb);
+		ft_sb(*pb);
 	else if (ft_strequ(line, "ss"))
-		ft_ss(pa, pb);
+		ft_ss(*pa, *pb);
 	else if (ft_strequ(line, "pa"))
 		ft_pa(pa, pb);
 	else if (ft_strequ(line, "pb"))
 		ft_pb(pa, pb);
 	else if (ft_strequ(line, "ra"))
-		ft_ra(pa);
+		ft_ra(*pa);
 	else if (ft_strequ(line, "rb"))
-		ft_rb(pb);
+		ft_rb(*pb);
 	else if (ft_strequ(line, "rr"))
-		ft_rr(pa, pb);
+		ft_rr(*pa, *pb);
 	else if (ft_strequ(line, "rra"))
-		ft_rra(pa);
+		ft_rra(*pa);
 	else if (ft_strequ(line, "rrb"))
-		ft_rrb(pb);
+		ft_rrb(*pb);
 	else if (ft_strequ(line, "rrr"))
 	{
-		ft_rra(pa);
-		ft_rrb(pb);
+		ft_rra(*pa);
+		ft_rrb(*pb);
 	}
 }
 
@@ -67,16 +67,17 @@ int	ft_check_sort(t_pile **pa, t_pile **pb)
 	prev = tmp->content;
 	while(tmp->next)
 	{
-		ft_printf("A : %d\n", tmp->content);
-//		if (tmp->content < prev)
-//			return (-1);
+	//	ft_printf("A : %d\n", tmp->content);
+		if (tmp->content < prev)
+			return (0);
 		prev = tmp->content;
 		tmp = tmp->next;
 	}
-	ft_printf("A : %d\n", tmp->content);
+//	ft_printf("A : %d\n", tmp->content);
 	tmp = *pb;
 	if (tmp)
 	{
+		return (0);
 		while(tmp->next)
 		{
 			ft_printf("B : %d\n", tmp->content);
@@ -98,7 +99,7 @@ int ft_execute_actions(t_pile **pile_a, int argc, char **argv)
 	{
 		if (!(ft_is_valid_action(line)))
 			return (-1);
-		ft_choose_actions(*pile_a, pile_b, line);
+		ft_choose_actions(pile_a, &pile_b, line);
 	}
 	if (!(ft_check_sort(pile_a, &pile_b)))
 		return (0);

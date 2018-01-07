@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 14:08:34 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/06 16:18:01 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/06 16:51:04 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	ft_ss(t_pile *pa, t_pile *pb)
 	ft_sb(pa);
 }
 
-void	ft_pa(t_pile *pa, t_pile *pb)
+void	ft_pa(t_pile **pa, t_pile **pb)
 {
 	t_pile *tmp;
 
-	if (pb)
+	if (*pb)
 	{
-		tmp = pb->next;
-		pb->next = pa;
-		pa = pb;
-		pb = tmp;
+		tmp = (*pb)->next;
+		(*pb)->next = *pa;
+		*pa = *pb;
+		*pb = tmp;
 	}
 }
 
@@ -65,11 +65,11 @@ void	ft_pb(t_pile **pa, t_pile **pb)
 {
 	t_pile *tmp;
 
-	if (pa)
+	if (*pa)
 	{
-		tmp = pa->next;
-		pa->next = pb;
-		pb = pa;
-		pa = tmp;
+		tmp = (*pa)->next;
+		(*pa)->next = *pb;
+		*pb = *pa;
+		*pa = tmp;
 	}
 }
