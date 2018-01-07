@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/07 14:33:48 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/07 14:45:03 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void				ft_rb(t_pile *pb);
 void				ft_rr(t_pile *pa, t_pile *pb);
 void				ft_rra(t_pile *pa);
 void				ft_rrb(t_pile *pb);
-void				ft_check_sort(t_pile **pa, t_pile **pb);
+int					ft_find_max(t_pile **pa);
+int					ft_check_sort(t_pile **pa, t_pile **pb);
 #endif
