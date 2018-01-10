@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/06 10:08:13 by clanglai          #+#    #+#              #
-#    Updated: 2018/01/07 15:45:49 by clanglai         ###   ########.fr        #
+#    Updated: 2018/01/08 17:18:37 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,8 @@ SRC_LIBC=	ft_strnew_fill.c \
 		ft_uitoa_size_t.c \
 		ft_strndup.c \
 		ft_putchar_print.c \
-		get_next_line.c
+		get_next_line.c \
+		ft_sort_int_table.c
 
 OBJ_LIBC=$(LIBC:.c=.o)
 OBJ_PRINTF=$(PRINTF:.c=.o)

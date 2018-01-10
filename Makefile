@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/01/07 15:54:18 by clanglai         ###   ########.fr        #
+#    Updated: 2018/01/10 09:53:08 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_BOTH=ft_actions_2.c \
 			ft_checker.c \
 			ft_pushswap.c \
 			ft_sort.c \
-			ft_actions.c
+			ft_actions.c \
+			ft_parse.c
 SRC_PUSHSWAP=ft_pushswap_main.c
 SRC_CHECKER=ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)

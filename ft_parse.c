@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 14:54:40 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/10 12:04:16 by clanglai         ###   ########.fr       */
+/*   Created: 2018/01/08 16:22:17 by clanglai          #+#    #+#             */
+/*   Updated: 2018/01/10 09:51:26 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
-#include <stdlib.h>
+#include "ft_pushswap.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
+int	ft_check_double_input(t_pile **pile, int number)
 {
-	if (alst && del)
+	t_pile *tmp;
+
+	tmp = *pile;
+	while (tmp->next)
 	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		if (tmp->content == number)
+			return (0);
+		tmp = tmp->next;
 	}
+	return (1);
 }

@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_sort_int_table.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 14:54:40 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/10 12:04:16 by clanglai         ###   ########.fr       */
+/*   Created: 2018/01/08 17:11:03 by clanglai          #+#    #+#             */
+/*   Updated: 2018/01/08 17:19:47 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
-#include <stdlib.h>
-
-void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
+void	ft_sort_int_tab(int *tab, int len)
 {
-	if (alst && del)
+	int	i;
+	int	k;
+	int	tmp;
+
+	i = 0;
+	while(i < len)
 	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		k = i + 1;
+		while (k < len)
+		{
+			if (tab[i] > tab[k])
+			{
+				tmp = tab[i];
+			   	tab[i] = tab[k];
+				tab[k] = tmp;	
+			}
+			k++;
+		}
+		i++;
 	}
 }

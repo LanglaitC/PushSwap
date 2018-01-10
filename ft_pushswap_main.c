@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/07 15:51:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/10 15:04:36 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int argc ,char **argv)
 			ft_printf("Error\n");
 			return (0);
 		}
-		ft_sort_pile(&start, &pb, argc, argv);
+		ft_sort_pile(&start, &pb);
 	}
 }

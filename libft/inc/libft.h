@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:29:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/05 15:41:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/10 12:00:16 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char					*ft_strrchr(const char *s, int c);
 char					*ft_strstr(const char *haystack, const char *needle);
 char					*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
+void					ft_sort_int_tab(int *tab, int len);
 int						ft_strcmp(const char *s1, const char *s2);
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
 int						ft_isalpha(int c);

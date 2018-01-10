@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/07 16:05:27 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/10 10:59:03 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ int	ft_check_sort(t_pile **pa, t_pile **pb)
 
 	tmp = *pa;
 	prev = tmp->content;
-	while(tmp->next)
+	while (tmp->next)
 	{
-//		ft_printf("A : %d\n", tmp->content);
+		ft_printf("A : %d\n", tmp->content);
 		if (tmp->content < prev)
 			return (0);
 		prev = tmp->content;
 		tmp = tmp->next;
 	}	
-//	ft_printf("A : %d\n", tmp->content);
+	ft_printf("A : %d\n", tmp->content);
 	if (tmp->content < prev)
 			return (0);
 	tmp = *pb;
@@ -82,10 +82,10 @@ int	ft_check_sort(t_pile **pa, t_pile **pb)
 		return (0);
 		while(tmp->next)
 		{
-			ft_printf("B : %d\n", tmp->content);
+	//		ft_printf("B : %d\n", tmp->content);
 			tmp = tmp->next;
 		}
-		ft_printf("B : %d\n", tmp->content);
+	//	ft_printf("B : %d\n", tmp->content);
 	}
 	return (1);
 }
@@ -97,9 +97,8 @@ int ft_execute_actions(t_pile **pile_a, int argc, char **argv)
 
 	line = NULL;
 	pile_b = NULL;
-	while(get_next_line(1, &line) == 1)
+	while(get_next_line(0, &line) == 1)
 	{
-		printf("Hello\n");
 		if (!(ft_is_valid_action(line)))
 			return (-1);
 		ft_choose_actions(pile_a, &pile_b, line);
