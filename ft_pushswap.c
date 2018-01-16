@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/10 16:46:43 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/11 09:21:39 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb)
 {
 	int	state;
 
-	state = ft_check_single_inv_sort(pa);
+	state = ft_check_single_inv_sort(pb);
 	if (*pb)
 		if (!((*pb)->next))
 		{
