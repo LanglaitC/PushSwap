@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 13:03:24 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 13:57:02 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,22 +216,23 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb)
 			ft_pb(pa, pb);
 			printf("pb\n");
 		}
-		//printf("Check Sort A\n");
 		state = ft_check_single_sort(pa);
-		//printf("After Sort\n");
 		//print_state(pa, pb);
 	}
 }
 
-void	ft_sort_pile_b(t_pile **pa, t_pile **pb)
+void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_list **res)
 {
-	int	state;
+	int		state;
+	t_list	*tmp;
 
+	tmp = *res;
 	state = ft_check_single_inv_sort(pb);
 	if (*pb && state)
 		while (*pb)
 		{
 			ft_pa(pa, pb);
+
 			printf("pa\n");
 			state = 1;
 		}
@@ -252,22 +253,22 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb)
 			ft_pa(pa, pb);
 			printf("pa\n");
 		}
-		//printf("Check Sort B\n");
 		state = ft_check_single_inv_sort(pb);
-		//printf("After Sort\n");
 		//print_state(pa, pb);
 	}
 }
 
 void	ft_sort_pile(t_pile **pa, t_pile **pb)
 {
-	int	state;
+	int		state;
+	t_pile	*res;
 
 	state = 0;
+	res = ft_lstnewpile(0);
 	while (state == 0)
 	{
-		ft_sort_pile_a(pa, pb);
-		ft_sort_pile_b(pa, pb);
+		ft_sort_pile_a(pa, pb, &res);
+		ft_sort_pile_b(pa, pb, &res);
 		state = ft_check_sort(pa, pb);
 	}
 }
