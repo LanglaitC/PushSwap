@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/10 15:01:53 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 13:01:45 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int					ft_find_min(t_pile **pa);
 int					ft_find_med(t_pile **pa, int len);
 int					ft_find_ele_x(t_pile **pa, int x);
 int					ft_count_elem(t_pile **pa);
+int					ft_create_a_pile_arg(t_pile **start, int argc, char **argv);
 #endif

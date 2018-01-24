@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/11 09:21:39 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 13:03:24 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,35 @@ int		ft_create_a_pile(t_pile **start, int argc, char **argv)
 		tmp = tmp->next;
 		i++;
 	}
+	return (1);
+}
+
+int		ft_create_a_pile_arg(t_pile **start, int argc, char **argv)
+{
+	t_pile	*tmp;
+	int		i;
+	int		number;
+	char	**tab;
+
+	i = 0;
+	tab = ft_strsplit(argv[1], ' ');
+	if (ft_check_int(tab[i]) == 0)
+		return (0);
+	*start = ft_lstnewpile(ft_atoi(tab[i++]));
+	tmp = *start;
+	while (tab[i])
+	{
+		if (ft_check_int(tab[i]) == 0)
+			return (0);
+		number = ft_atoi(tab[i]);
+		tmp->next = ft_lstnewpile(number);
+		if (ft_check_double_input(start, number) == 0)
+			return (0);
+		tmp = tmp->next;
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 	return (1);
 }
 
@@ -133,6 +162,38 @@ int		ft_check_single_inv_sort(t_pile **pa)
 	return (1);
 }
 
+void	print_state(t_pile **pa, t_pile **pb)
+{
+	t_pile *tmp;
+
+	printf("\n-----------------------------------------------------------------------\n\n");
+	tmp = *pa;
+	if (tmp)
+	{
+		printf("	Pile a = ");
+		while(tmp->next)
+		{
+			printf("[%d] ", tmp->content);
+			tmp = tmp->next;
+		}
+		printf("[%d]", tmp->content);
+		printf("\n\n");
+	}
+	tmp = *pb;
+	if (tmp)
+	{
+		printf("	Pile b = ");
+		while(tmp->next)
+		{
+			printf("[%d] ", tmp->content);
+			tmp = tmp->next;
+		}
+		printf("[%d]", tmp->content);
+		printf("\n\n");
+	}
+	printf("-----------------------------------------------------------------------\n\n");
+}
+
 void	ft_sort_pile_a(t_pile **pa, t_pile **pb)
 {
 	int state;
@@ -155,7 +216,10 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb)
 			ft_pb(pa, pb);
 			printf("pb\n");
 		}
+		//printf("Check Sort A\n");
 		state = ft_check_single_sort(pa);
+		//printf("After Sort\n");
+		//print_state(pa, pb);
 	}
 }
 
@@ -164,8 +228,8 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb)
 	int	state;
 
 	state = ft_check_single_inv_sort(pb);
-	if (*pb)
-		if (!((*pb)->next))
+	if (*pb && state)
+		while (*pb)
 		{
 			ft_pa(pa, pb);
 			printf("pa\n");
@@ -188,7 +252,10 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb)
 			ft_pa(pa, pb);
 			printf("pa\n");
 		}
+		//printf("Check Sort B\n");
 		state = ft_check_single_inv_sort(pb);
+		//printf("After Sort\n");
+		//print_state(pa, pb);
 	}
 }
 

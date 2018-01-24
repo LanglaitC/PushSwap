@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 14:08:34 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/12 16:08:43 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 12:54:11 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_sb(t_pile *pb)
 			pb->next->content = tmp;
 		}
 	}
+
 }
 
 void	ft_ss(t_pile *pa, t_pile *pb)

@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/12 16:05:39 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/23 14:42:05 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,17 @@ int	ft_check_sort(t_pile **pa, t_pile **pb)
 	prev = tmp->content;
 	while (tmp->next)
 	{
-		ft_printf("A : %d\n", tmp->content);
-//		if (tmp->content < prev)
-//			return (0);
+		if (tmp->content < prev)
+			return (0);
 		prev = tmp->content;
 		tmp = tmp->next;
 	}	
-	ft_printf("A : %d\n", tmp->content);
 	if (tmp->content < prev)
 			return (0);
 	tmp = *pb;
 	if (tmp)
 	{
 		return (0);
-		while(tmp->next)
-		{
-			ft_printf("B : %d\n", tmp->content);
-			tmp = tmp->next;
-		}
-		ft_printf("B : %d\n", tmp->content);
 	}
 	return (1);
 }
