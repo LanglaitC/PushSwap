@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 13:57:26 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 14:32:17 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ int					ft_find_med(t_pile **pa, int len);
 int					ft_find_ele_x(t_pile **pa, int x);
 int					ft_count_elem(t_pile **pa);
 int					ft_create_a_pile_arg(t_pile **start, int argc, char **argv);
+void				ft_add_at_end(t_pile **st, int ac, t_pile **pa, t_pile**pb);
+void				ft_print_res(t_pile **res);
 #endif

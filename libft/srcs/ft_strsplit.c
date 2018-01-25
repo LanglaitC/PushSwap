@@ -6,11 +6,12 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 10:08:03 by clanglai          #+#    #+#             */
-/*   Updated: 2017/11/13 12:07:54 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:27:36 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "../inc/libft.h"
 
 static int	ft_count_words(const char *s, char c)
 {
@@ -36,64 +37,49 @@ static int	ft_count_words(const char *s, char c)
 	return (word);
 }
 
-static char	*ft_create_word(char *s, char c)
+static char	*ft_get_words(char **str, char c)
 {
 	int		i;
-	char	*str;
+	int		j;
+	char	*cpy;
 
 	i = 0;
-	while (s[i] != '\0' && s[i] != c)
+	j = 0;
+	while ((**str == c && **str))
+		*str = *str + 1;
+	while ((*str)[i] != c && (*str)[i])
 		i++;
-	if (!(str = (char*)malloc(sizeof(char) * i + 1)))
+	if (!(cpy = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	i = 0;
-	while (s[i] && s[i] != c)
+	while (j < i)
 	{
-		str[i] = s[i];
-		i++;
+		cpy[j] = **str;
+		*str = *str + 1;
+		j++;
 	}
-	str[i] = '\0';
-	return (str);
+	cpy[j] = '\0';
+	return (cpy);
 }
 
-static char	*ft_advance_pointer(char *s, char c)
-{
-	while (*s != c)
-		s++;
-	while (*s == c)
-		s++;
-	return (s);
-}
-
-static char	**ft_create_table(char **tab, int words, char *s, char c)
-{
-	int i;
-
-	i = 0;
-	if (s[0] == c)
-		s = ft_advance_pointer(s, c);
-	while (i < words)
-	{
-		tab[i] = ft_create_word(s, c);
-		s = ft_advance_pointer(s, c);
-		i++;
-	}
-	tab[i] = 0;
-	return (tab);
-}
 
 char		**ft_strsplit(char const *s, char c)
 {
+	char	*cpy;
 	int		words;
 	char	**tab;
-	char	*cpy;
+	int		i;
 
-	if (!s)
-		return (0);
-	cpy = (char*)s;
+	i = 0;
 	words = ft_count_words(s, c);
-	if (!(tab = (char**)malloc(sizeof(char*) * (words + 1))))
+	if (!(cpy = ft_strdup(s)))
 		return (NULL);
-	tab = ft_create_table(tab, words, cpy, c);
+	if (!(tab =  (char**)malloc(sizeof(char*) * (words + 1))))
+		return (NULL);
+	while (i < words)
+	{
+		tab[i] = ft_get_words(&cpy, c);
+		i++;
+	}
+	tab[i] = 0;
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 14:08:34 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 12:54:11 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/24 15:44:13 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	ft_sb(t_pile *pb)
 
 void	ft_ss(t_pile *pa, t_pile *pb)
 {
-	ft_sa(pa);
 	ft_sb(pa);
+	ft_sa(pb);
 }
 
 void	ft_pa(t_pile **pa, t_pile **pb)

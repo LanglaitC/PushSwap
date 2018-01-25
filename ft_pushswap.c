@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 13:57:02 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:29:06 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	print_state(t_pile **pa, t_pile **pb)
 	printf("-----------------------------------------------------------------------\n\n");
 }
 
-void	ft_sort_pile_a(t_pile **pa, t_pile **pb)
+void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res)
 {
 	int state;
 
@@ -202,59 +202,34 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb)
 	while (state == 0)
 	{
 		if ((*pa)->content > ft_find_ele_x(pa, ft_count_elem(pa)))
-		{
-			ft_ra(*pa);
-			printf("ra\n");
-		}
+			ft_add_at_end(res, 11, pa, pb);
 		else if ((*pa)->content > (*pa)->next->content)
-		{
-			ft_sa(*pa);
-			printf("sa\n");
-		}
+			ft_add_at_end(res, 2, pa, pb);
 		else
-		{
-			ft_pb(pa, pb);
-			printf("pb\n");
-		}
+			ft_add_at_end(res, 7, pa, pb);
 		state = ft_check_single_sort(pa);
-		//print_state(pa, pb);
 	}
 }
 
-void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_list **res)
+void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res)
 {
 	int		state;
-	t_list	*tmp;
+	t_pile	*tmp;
 
 	tmp = *res;
 	state = ft_check_single_inv_sort(pb);
 	if (*pb && state)
 		while (*pb)
-		{
-			ft_pa(pa, pb);
-
-			printf("pa\n");
-			state = 1;
-		}
+			ft_add_at_end(res, 5, pa, pb);
 	while (state == 0)
 	{	
 		if ((*pb)->content < ft_find_ele_x(pb, ft_count_elem(pb)))
-		{
-			ft_rb(*pb);
-			printf("rb\n");
-		}
+			ft_add_at_end(res, 13, pa, pb);
 		else if ((*pb)->content < (*pb)->next->content)
-		{
-			ft_sb(*pb);
-			printf("sb\n");
-		}
+			ft_add_at_end(res, 3, pa, pb);
 		else
-		{
-			ft_pa(pa, pb);
-			printf("pa\n");
-		}
+			ft_add_at_end(res, 5, pa, pb);
 		state = ft_check_single_inv_sort(pb);
-		//print_state(pa, pb);
 	}
 }
 
@@ -271,4 +246,6 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 		ft_sort_pile_b(pa, pb, &res);
 		state = ft_check_sort(pa, pb);
 	}
+	//print_state(pa, pb);
+	ft_print_res(&res);
 }
