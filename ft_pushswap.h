@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 14:32:17 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/25 17:10:35 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,7 @@ int					ft_count_elem(t_pile **pa);
 int					ft_create_a_pile_arg(t_pile **start, int argc, char **argv);
 void				ft_add_at_end(t_pile **st, int ac, t_pile **pa, t_pile**pb);
 void				ft_print_res(t_pile **res);
+int					ft_count_sorted(t_pile **pile);
+int					ft_count_inv_sorted(t_pile **pile);
+int					ft_is_next(t_pile **pa);
 #endif

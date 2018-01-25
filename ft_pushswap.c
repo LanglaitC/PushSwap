@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 12:29:06 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/25 16:54:17 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,17 +197,25 @@ void	print_state(t_pile **pa, t_pile **pb)
 void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res)
 {
 	int state;
+	int last;
 
 	state = ft_check_single_sort(pa);
+	if (ft_count_elem(pa))
+	//	last = ft_find_ele_x(pa, (ft_count_elem(pa) / (ft_count_sorted(pa) > (ft_count_elem(pa)) ? 1 : 2)));
+		last = ft_find_ele_x(pa, ft_count_elem(pa));
+	else
+		last = 0;
 	while (state == 0)
 	{
-		if ((*pa)->content > ft_find_ele_x(pa, ft_count_elem(pa)))
+		if ((*pa)->content == last)
+			state = 1;
+		if ((*pa)->content > last)
 			ft_add_at_end(res, 11, pa, pb);
 		else if ((*pa)->content > (*pa)->next->content)
 			ft_add_at_end(res, 2, pa, pb);
 		else
 			ft_add_at_end(res, 7, pa, pb);
-		state = ft_check_single_sort(pa);
+		state = state == 1 ? 1 : ft_check_single_sort(pa);
 	}
 }
 
@@ -215,21 +223,28 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res)
 {
 	int		state;
 	t_pile	*tmp;
+	int		last;
 
 	tmp = *res;
 	state = ft_check_single_inv_sort(pb);
 	if (*pb && state)
 		while (*pb)
 			ft_add_at_end(res, 5, pa, pb);
+	if (ft_count_elem(pb))
+		last = ft_find_ele_x(pb, ft_count_elem(pb));
+	else
+		last = 0;
 	while (state == 0)
 	{	
-		if ((*pb)->content < ft_find_ele_x(pb, ft_count_elem(pb)))
+		if ((*pb)->content == last)
+			state = 1;
+		else if ((*pb)->content < last)
 			ft_add_at_end(res, 13, pa, pb);
 		else if ((*pb)->content < (*pb)->next->content)
 			ft_add_at_end(res, 3, pa, pb);
 		else
 			ft_add_at_end(res, 5, pa, pb);
-		state = ft_check_single_inv_sort(pb);
+		state = (state == 1) ? 1 : ft_check_single_inv_sort(pb);
 	}
 }
 

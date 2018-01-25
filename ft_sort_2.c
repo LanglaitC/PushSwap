@@ -1,36 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pushswap_main.c                                 :+:      :+:    :+:   */
+/*   ft_sort_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 12:54:18 by clanglai         ###   ########.fr       */
+/*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
+/*   Updated: 2018/01/25 14:13:54 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
-
-int	main(int argc ,char **argv)
-{
-	t_pile	*start;
-	t_pile	*pb;
-	int		state;
-
-	pb = NULL;
-	start = NULL;
-	if (argc > 1)
-	{
-		if (argc != 2)
-			state = ft_create_a_pile(&start, argc, argv);
-		else
-			state = ft_create_a_pile_arg(&start, argc, argv);
-		if (state == 0)
-		{
-			ft_printf("Error\n");
-			return (0);
-		}
-		ft_sort_pile(&start, &pb);
-	}
-}
