@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 16:54:17 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/01/28 14:46:24 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,9 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res)
 
 	state = ft_check_single_sort(pa);
 	if (ft_count_elem(pa))
-	//	last = ft_find_ele_x(pa, (ft_count_elem(pa) / (ft_count_sorted(pa) > (ft_count_elem(pa)) ? 1 : 2)));
-		last = ft_find_ele_x(pa, ft_count_elem(pa));
+		//last = ft_find_ele_x(pa, (ft_count_elem(pa) / (ft_count_sorted(pa) > (ft_count_elem(pa) / 3) ? 1 : 3)));
+		last = ft_find_ele_x(pa, ft_count_sorted(pa) + (ft_count_elem(pa) / 3) > ft_count_elem(pa) ? ft_count_elem(pa) : ft_count_sorted(pa) + ft_count_elem(pa) / 3);
+		//last = ft_find_ele_x(pa, ft_count_elem(pa));
 	else
 		last = 0;
 	while (state == 0)
@@ -231,7 +232,9 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res)
 		while (*pb)
 			ft_add_at_end(res, 5, pa, pb);
 	if (ft_count_elem(pb))
-		last = ft_find_ele_x(pb, ft_count_elem(pb));
+//		last = ft_find_ele_x(pb, (ft_count_elem(pb) / (ft_count_sorted(pb) > (ft_count_elem(pb)) ? 1 : 2)));
+		last = ft_find_ele_x(pb, ft_count_sorted(pb) + 5 > ft_count_elem(pb) ? ft_count_elem(pb) : ft_count_sorted(pb) + 5);
+		//last = ft_find_ele_x(pb, ft_count_elem(pb));
 	else
 		last = 0;
 	while (state == 0)
@@ -258,9 +261,12 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	while (state == 0)
 	{
 		ft_sort_pile_a(pa, pb, &res);
-		ft_sort_pile_b(pa, pb, &res);
+	//	while (ft_check_single_inv_sort(pb) == 0 || ft_count_elem(pb))
+	//	{
+		//	print_state(pa, pb);
+			ft_sort_pile_b(pa, pb, &res);
+	//	}
 		state = ft_check_sort(pa, pb);
 	}
-	//print_state(pa, pb);
 	ft_print_res(&res);
 }
