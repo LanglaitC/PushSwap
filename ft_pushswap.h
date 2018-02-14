@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 17:10:35 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/14 15:12:12 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef	struct		s_pile
 {
 	int				content;
 	struct s_pile	*next;
+	int				sort;
 }					t_pile;
 
 void				ft_sort_pile(t_pile **pile, t_pile **pb);
