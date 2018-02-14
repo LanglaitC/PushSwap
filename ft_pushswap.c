@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/28 14:46:24 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/14 12:36:06 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 int		ft_check_int(char *str)
 {
 	int i;
+	int state = 1;
 
 	i = 0;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == 0)
+		if (ft_isdigit(str[i]) == 0 && (str[i] != '-' || state != 1))
 			return (0);
+		if (ft_isdigit(str[i]) == 1)
+			state = 0;
 		i++;
 	}
 	return (1);
@@ -261,11 +264,11 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	while (state == 0)
 	{
 		ft_sort_pile_a(pa, pb, &res);
-	//	while (ft_check_single_inv_sort(pb) == 0 || ft_count_elem(pb))
-	//	{
-		//	print_state(pa, pb);
+		//while (ft_check_single_inv_sort(pb) == 0 || ft_count_elem(pb))
+		//{
+			//print_state(pa, pb);
 			ft_sort_pile_b(pa, pb, &res);
-	//	}
+		//}
 		state = ft_check_sort(pa, pb);
 	}
 	ft_print_res(&res);
