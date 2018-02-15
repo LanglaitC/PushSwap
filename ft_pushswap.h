@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/14 15:12:12 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/15 10:49:36 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,21 @@ void				ft_rb(t_pile *pb);
 void				ft_rr(t_pile *pa, t_pile *pb);
 void				ft_rra(t_pile *pa);
 void				ft_rrb(t_pile *pb);
-int					ft_find_max(t_pile **pa);
+int					ft_find_max(t_pile **pa, int s);
 int					ft_check_sort(t_pile **pa, t_pile **pb);
 int					ft_check_double_input(t_pile **pa, int number);
-int					ft_find_max(t_pile **pa);
-int					ft_find_min(t_pile **pa);
-int					ft_find_med(t_pile **pa, int len);
+int					ft_find_max(t_pile **pa, int s);
+int					ft_find_min(t_pile **pa, int s);
+int					ft_find_index(t_pile **pa, int x);
+int					ft_find_med(t_pile **pa, int len, int sort);
 int					ft_find_ele_x(t_pile **pa, int x);
-int					ft_count_elem(t_pile **pa);
+int					ft_count_elem(t_pile **pa, int s);
 int					ft_create_a_pile_arg(t_pile **start, int argc, char **argv);
 void				ft_add_at_end(t_pile **st, int ac, t_pile **pa, t_pile**pb);
 void				ft_print_res(t_pile **res);
 int					ft_count_sorted(t_pile **pile);
 int					ft_count_inv_sorted(t_pile **pile);
 int					ft_is_next(t_pile **pa);
+void				ft_attribute_sort(t_pile ** pb, int sort);
+int					ft_find_value_below(t_pile **pa, int x, int s);
 #endif

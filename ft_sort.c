@@ -6,62 +6,64 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 14:41:20 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/28 14:39:01 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/15 10:23:06 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	ft_find_max(t_pile **pa)
+int	ft_find_max(t_pile **pa, int sort)
 {
 	t_pile *tmp;
 	int highest;
 
 	tmp = *pa;
 	highest = tmp->content;
-	while (tmp->next)
+	while (tmp)
 	{
-		if (highest < tmp->content)
+		if (highest < tmp->content && (tmp->sort == sort || sort == -1))
 			highest = tmp->content;
 		tmp = tmp->next;	
 	}
-	if (highest < tmp->content)
-		highest = tmp->content;
 	return (highest);
 }
 
-int	ft_find_min(t_pile **pa)
+int	ft_find_min(t_pile **pa, int sort)
 {
 	t_pile	*tmp;
 	int		lowest;
 
 	tmp = *pa;
 	lowest = tmp->content;
-	while (tmp->next)
+	while (tmp)
 	{
-		if (lowest > tmp->content)
+		if (lowest > tmp->content && (tmp->sort == sort || sort == -1))
 			lowest = tmp->content;
 		tmp = tmp->next;	
 	}
-	if (lowest > tmp->content)
-		lowest = tmp->content;
 	return (lowest);
 }
 
-int	ft_find_med(t_pile **pa, int len)
+int	ft_find_med(t_pile **pa, int len, int sort)
 {
 	t_pile	*tmp;
 	int		i;
 	int		med;
 	int		*tab;
+	int		j;
 
+	j = 0;
 	i = 0;
 	if (!(tab = malloc(sizeof(int) * len + 1)))
 		exit (0);
 	tmp = *pa;
 	while (i < len)
 	{
-		tab[i] = tmp->content;
+		if (tmp->sort == sort || sort == -1)
+		{
+			tab[j] = tmp->content;
+			j++;
+		}
 		i++;
 		tmp = tmp->next;
 	}
@@ -86,7 +88,7 @@ int	ft_find_ele_x(t_pile **pa, int x)
 	return (tmp->content);
 }
 
-int	ft_count_elem(t_pile **pa)
+int	ft_count_elem(t_pile **pa, int sort)
 {
 	t_pile *tmp;
 	int	i;
@@ -95,13 +97,17 @@ int	ft_count_elem(t_pile **pa)
 	if (*pa)
 	{
 		tmp = *pa;
-		while (tmp->next)
+		while (tmp)
 		{
-			i++;
+			if (tmp->sort == sort || sort == -1)
+				i++;
 			tmp = tmp->next;
 		}
 		if (tmp != NULL)
-			i++;
+		{
+			if (tmp->sort == sort || sort == -1)
+				i++;
+		}
 	}
 	return (i);
 }

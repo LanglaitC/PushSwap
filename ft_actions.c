@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 14:08:34 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/24 15:44:13 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:59:33 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_sa(t_pile *pa)
 {
 	int tmp;
+	int	sort;
 
 	if (pa)
 	{
@@ -23,6 +24,9 @@ void	ft_sa(t_pile *pa)
 			tmp = pa->content;
 			pa->content = pa->next->content;
 			pa->next->content = tmp;
+			sort = pa->sort;
+			pa->sort = pa->next->sort;
+			pa->next->sort = sort;
 		}
 	}
 }
@@ -30,6 +34,7 @@ void	ft_sa(t_pile *pa)
 void	ft_sb(t_pile *pb)
 {
 	int tmp;
+	int	sort;
 
 	if (pb)
 	{
@@ -38,6 +43,9 @@ void	ft_sb(t_pile *pb)
 			tmp = pb->content;
 			pb->content = pb->next->content;
 			pb->next->content = tmp;
+			sort = pb->sort;
+			pb->sort = pb->next->sort;
+			pb->next->sort = sort;
 		}
 	}
 
