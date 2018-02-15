@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 10:56:35 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:30:20 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,13 +206,9 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
 	int state;
 	int last;
-	int i;
-	int	j;
 	int	way;
 
 	state = ft_check_single_sort(pa, s);
-	i = 0;
-	j = ft_count_elem(pa, s);
 	if (ft_count_elem(pa, s))
 		last = ft_find_med(pa, ft_count_elem(pa, s), s);
 	else
@@ -220,16 +216,15 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	way = 1;
 	while (state == 0)
 	{
-		if (i == j || !ft_find_value_below(pa, last, s))
+		if (!ft_find_value_below(pa, last, s))
 			state = 1;
-		if (((*pa)->content >= last && way == 1) || ((*pa)->content <= last && way == 0))
+		if (((*pa)->content > last && way == 1) || ((*pa)->content <= last && way == 0))
 			ft_add_at_end(res, way == 1 ? 11 : 17, pa, pb);
 		else
 			ft_add_at_end(res, 7, pa, pb);
-		i++;
 	}
-	if (way)
-		ft_add_at_end(res, 11, pa, pb);
+	//if (way)
+	//	ft_add_at_end(res, 11, pa, pb);
 }
 
 void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
@@ -246,6 +241,29 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	ft_add_at_end(res, 5, pa, pb);
 }
 
+/*
+void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
+{
+	int	state;
+	int	way;
+	int	i;
+	
+	state = ft_check_single_inv_sort(pb, s);
+	if (ft_count_elem(pb, s))
+		last = ft_find_med(pb, ft_count_elem(pb, s), s)
+	else
+		last = 0;
+	while (state == 0)
+	{
+		if (!ft_find_value_above(pb, last, s))
+			state = 1;
+		if (((*pb)->content > last && (*pb)->sort == s)
+			ft_add_at_end(res, 5, pa, pb)
+		else
+			ft_add_at_end(res, 13, pa, pb);
+	}
+}
+*/
 void	ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
 	int		state;
@@ -313,11 +331,11 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	sort--;	
 	while (state == 0)
 	{
+		if (ft_count_elem(pb, -1) <= 3)
+			ft_sort_pile_b_less_than_3(pb, pb, &res, -1);
 		while (ft_count_elem(pb, sort) != 0)
 		{
 			ft_sort_pile_b(pa, pb, &res, sort);
-			//print_state(pa, pb);
-			//sleep(7);
 		}
 		sort--;
 		state = ft_check_sort(pa, pb);

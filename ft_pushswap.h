@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 10:49:36 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:24:03 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ int					ft_count_inv_sorted(t_pile **pile);
 int					ft_is_next(t_pile **pa);
 void				ft_attribute_sort(t_pile ** pb, int sort);
 int					ft_find_value_below(t_pile **pa, int x, int s);
+int					ft_check_single_inv_sort(t_pile **pb, int s);
+int					ft_find_value_above(t_pile **pa, int x, int s);
 #endif
