@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:22:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/14 15:24:09 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/19 11:31:02 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_count_sorted(t_pile **pa)
 	int		prev;
 	int		res;
 
-	res = 0;
+	res = 1;
 	if (!(*pa))
 		return (-1);
 	if (!(*pa)->next)
@@ -49,7 +49,7 @@ int	ft_count_sorted(t_pile **pa)
 	}
 	if (tmp->content < prev)
 		return (res);
-	return (-1);
+	return (res);
 }
 
 int	ft_count_inv_sorted(t_pile **pa)

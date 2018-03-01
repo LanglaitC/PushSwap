@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/06 10:08:13 by clanglai          #+#    #+#              #
-#    Updated: 2018/01/08 17:18:37 by clanglai         ###   ########.fr        #
+#    Updated: 2018/02/18 15:34:50 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,9 @@ SRC_LIBC=	ft_strnew_fill.c \
 		ft_strndup.c \
 		ft_putchar_print.c \
 		get_next_line.c \
-		ft_sort_int_table.c
+		ft_sort_int_table.c \
+		ft_find_max_tab.c \
+		ft_find_min_tab.c
 
 OBJ_LIBC=$(LIBC:.c=.o)
 OBJ_PRINTF=$(PRINTF:.c=.o)
@@ -136,6 +138,10 @@ all: $(NAME)
 $(NAME): $(OBJ_LIBC) $(OBJ_PRINTF)
 	@ar rc $(NAME) $(OBJ_LIBC) $(OBJ_PRINTF)
 	@ranlib $(NAME)
+
+
+%.o : %.c
+	$(CC) $(FLAGS) -o $@ -c $<
 
 clean:
 	@rm -rf $(OBJ_LIBC) $(OBJ_PRINTF)

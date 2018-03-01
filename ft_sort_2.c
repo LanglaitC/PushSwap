@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 12:28:05 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/02/15 12:54:24 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_find_value_above(t_pile **pa, int x, int s)
 	tmp = *pa;
 	while (tmp)
 	{
-		if (tmp->content >= x && (tmp ->sort == s || s == -1))
+		if (tmp->content > x && (tmp ->sort == s || s == -1))
 			return (1);
 		tmp = tmp->next;
 	}

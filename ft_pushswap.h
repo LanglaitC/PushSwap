@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 12:24:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:43:10 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef	struct		s_pile
 	struct s_pile	*next;
 	int				sort;
 }					t_pile;
+
+typedef struct		s_insert
+{
+	int				content;
+	int				found;
+}					t_insert;
 
 void				ft_sort_pile(t_pile **pile, t_pile **pb);
 int					ft_create_a_pile(t_pile **start, int argc, char **argv);
@@ -53,8 +59,12 @@ void				ft_print_res(t_pile **res);
 int					ft_count_sorted(t_pile **pile);
 int					ft_count_inv_sorted(t_pile **pile);
 int					ft_is_next(t_pile **pa);
-void				ft_attribute_sort(t_pile ** pb, int sort);
+void				ft_attribute_sort(t_pile ** pb, int sort, int state);
 int					ft_find_value_below(t_pile **pa, int x, int s);
 int					ft_check_single_inv_sort(t_pile **pb, int s);
 int					ft_find_value_above(t_pile **pa, int x, int s);
+void				ft_find_last_three(t_pile **pb, int sort, t_insert *tab,
+		int len);
+int					ft_find_min_index(t_pile **pb, t_insert *max, int len);
+void				ft_print_state(t_pile **pa, t_pile **pb);
 #endif

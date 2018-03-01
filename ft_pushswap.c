@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 12:30:20 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:55:14 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,79 +95,58 @@ int		ft_create_a_pile_arg(t_pile **start, int argc, char **argv)
 	return (1);
 }
 
-/*void	ft_sort_pile(t_pile **pa, t_pile **pb, int argc, char **argv)
-{
-	int		state;
-	t_pile	*tmp;
-	int		highest;
-
-	state = 0;
-	highest = ft_find_max(pa);
-	while (state == 0)
-	{
-		tmp = *pa;
-		if (tmp->next)
-		{
-			if (tmp->next->content < tmp->content && tmp->content != highest)
-			{
-				ft_sa(*pa);
-				ft_printf("sa\n");
-			}
-			ft_ra(*pa);
-			ft_printf("ra\n");
-		}
-		state = ft_check_sort(pa, pb);
-	}	
-}*/
-
 int		ft_check_single_sort(t_pile **pa, int sort)
 {
 	t_pile *tmp;
 	int		prev;
 	int		state;
+	int		prev_s;
 
 	if (!(*pa))
+		return (1);
+	if ((*pa)->sort != sort && sort != -1)
 		return (1);
 	if (!((*pa)->next))
 		return (1);
 	tmp = *pa;
 	prev = tmp->content;
+	prev = tmp->sort;
 	state = 1;
 	while (tmp)
 	{
-		if (tmp->sort == sort)
-			state = 0;
-		if (tmp->content < prev && (state == 0 || sort == -1))
+		if (tmp->content < prev && (tmp->sort == prev_s || sort == -1))
 			return (0);
 		prev = tmp->content;
+		prev_s = tmp->sort;
 		tmp = tmp->next;
 	}
-	return (state);
+	return (1);
 }
 
 int		ft_check_single_inv_sort(t_pile **pa, int sort)
 {
 	t_pile *tmp;
 	int		prev;
-	int		state;
+	int		prev_s;
 
 	if (!(*pa))
+		return (1);
+	if ((*pa)->sort != sort && sort != -1)
 		return (1);
 	if (!((*pa)->next))
 		return (1);
 	tmp = *pa;
 	prev = tmp->content;
-	state = 1;
+	prev_s = tmp->sort;
 	while (tmp)
 	{
-		if (tmp->sort == sort)
-			state = 0;
-		if (tmp->content > prev && (state == 0 || sort == -1))
+		if (tmp->content > prev && (tmp->sort == prev_s || sort == -1))
 			return (0);
 		prev = tmp->content;
+		prev_s = tmp->sort;
 		tmp = tmp->next;
 	}
-	return (state);
+	return (1);
 }
 
 void	print_state(t_pile **pa, t_pile **pb)
@@ -207,26 +186,26 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	int state;
 	int last;
 	int	way;
+	int	i;
+	int	j;
 
-	state = ft_check_single_sort(pa, s);
 	if (ft_count_elem(pa, s))
 		last = ft_find_med(pa, ft_count_elem(pa, s), s);
 	else
 		last = 0;
-	way = 1;
-	while (state == 0)
+	j = 0;
+	i = ft_count_elem(pa, s);
+	way = (*pa)->next->sort == s;
+	while (j <= i)
 	{
-		if (!ft_find_value_below(pa, last, s))
-			state = 1;
-		if (((*pa)->content > last && way == 1) || ((*pa)->content <= last && way == 0))
-			ft_add_at_end(res, way == 1 ? 11 : 17, pa, pb);
-		else
+		if (((*pa)->content < last))
 			ft_add_at_end(res, 7, pa, pb);
+		else
+			ft_add_at_end(res, way == 1 ? 17 : 11, pa, pb);
+		j++;
 	}
-	//if (way)
-	//	ft_add_at_end(res, 11, pa, pb);
 }
-
+/*
 void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
 	int	state;
@@ -239,71 +218,74 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	while ((*pb)->content != i)
 		ft_add_at_end(res, way == 1 ? 19 : 13, pa, pb);
 	ft_add_at_end(res, 5, pa, pb);
-}
+}*/
 
-/*
 void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	int	state;
-	int	way;
-	int	i;
-	
-	state = ft_check_single_inv_sort(pb, s);
+	int			i;
+	int			way;
+	int			last;
+	int			j;
+//	int			state;
+
+//	state = ft_check_single_inv_sort(pb, s);
+//	if (*pb && state)
+//		while ((*pb)->sort == s || (s == -1 && *pb))
+//			ft_add_at_end(res, 5, pa, pb);
 	if (ft_count_elem(pb, s))
-		last = ft_find_med(pb, ft_count_elem(pb, s), s)
+		last = ft_find_med(pb, ft_count_elem(pb, s), s);
 	else
 		last = 0;
-	while (state == 0)
+	i = ft_count_elem(pb, s);
+	way = (*pb)->next->sort == s;
+	j = 0;
+	while (j <= i)
 	{
-		if (!ft_find_value_above(pb, last, s))
-			state = 1;
-		if (((*pb)->content > last && (*pb)->sort == s)
-			ft_add_at_end(res, 5, pa, pb)
+		if ((*pb)->content > last && ((*pb)->sort == s || s == -1))
+			ft_add_at_end(res, 5, pa, pb);
 		else
-			ft_add_at_end(res, 13, pa, pb);
+			ft_add_at_end(res, way == 1 ? 13 : 19, pa, pb);
+		j++;
 	}
 }
-*/
+
 void	ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	int		state;
-	t_pile	*tmp;
-	
-	tmp = *res;
+	int state;
+	int way;
+
 	state = ft_check_single_inv_sort(pb, s);
 	if (*pb && state)
-		while (*pb)
+		while (*pb && ((*pb)->sort == s || (s == -1 && *pb)))
 			ft_add_at_end(res, 5, pa, pb);
 	while (state == 0)
 	{
-		if ((*pb)->content > (*pb)->next->content && (*pb)->content <
-				ft_find_ele_x(pb, ft_count_elem(pb, s)))
-			ft_add_at_end(res, 19, pa, pb);
-		else if ((*pb)->content < ft_find_ele_x(pb, ft_count_elem(pb, s)))
-			ft_add_at_end(res, 13, pa, pb);
-		else
+		if ((*pb)->content == ft_find_max(pb, s))
 			ft_add_at_end(res, 5, pa, pb);
-		state = ft_check_single_inv_sort(pb, s);
+		else
+		{
+			way = ft_find_index(pb, ft_find_max(pb, s)) > ft_count_elem(pb, -1) / 2;
+			ft_add_at_end(res, way == 1 ? 19 : 13, pa, pb);
+		}
+		state = ft_count_elem(pb, s) == 0;
 	}
 }
 
 void	ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
 	int		state;
-	t_pile	*tmp;
 	
-	tmp = *res;
 	state = ft_check_single_sort(pa, s);
 	while (state == 0)
 	{
-		if ((*pa)->content < (*pa)->next->content && (*pa)->content >
-				ft_find_ele_x(pa, ft_count_elem(pa, s)))
-			ft_add_at_end(res, 17, pa, pb);
-		else if ((*pa)->content > ft_find_ele_x(pa, ft_count_elem(pa, s)))
-			ft_add_at_end(res, 11, pa, pb);
-		else
+		if ((*pa)->content > (*pa)->next->content && (*pa)->sort == (*pa)->next->sort
+				&& ((*pa)->sort == s || s == -1))
 			ft_add_at_end(res, 2, pa, pb);
-		state = ft_check_single_sort(pa, s);
+		else if ((*pa)->next->sort != s)
+			ft_add_at_end(res, 17, pa, pb);
+		else
+			ft_add_at_end(res, 11, pa, pb);
+		state = ft_check_single_sort(pa, -1);
 	}
 }
 
@@ -313,7 +295,6 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	t_pile	*res;
 	int		sort;
 
-	state = ft_check_sort(pa, pb);
 	res = ft_lstnewpile(0);
 	sort = 1;
 	while (ft_check_single_sort(pa, -1) == 0)
@@ -323,23 +304,23 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 		else
 		{
 			ft_sort_pile_a(pa, pb, &res, -1);
-			ft_attribute_sort(pb, sort);
+			ft_attribute_sort(pb, sort, 0);
 			sort++;
-			//print_state(pa, pb);
 		}
 	}
-	sort--;	
-	while (state == 0)
+	sort--;
+	while (ft_check_sort(pa, pb) == 0)
 	{
-		if (ft_count_elem(pb, -1) <= 3)
-			ft_sort_pile_b_less_than_3(pb, pb, &res, -1);
-		while (ft_count_elem(pb, sort) != 0)
-		{
+		while (ft_count_elem(pb, sort) > 3)
 			ft_sort_pile_b(pa, pb, &res, sort);
+		while (ft_count_elem(pa, sort) > 3)
+			ft_sort_pile_a(pa, pb, &res, sort);
+		ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
+		if (ft_check_single_sort(pa, -1) && ft_count_elem(pb, sort) <= 3)
+		{
+			ft_sort_pile_b_less_than_3(pa, pb, &res, sort);
+			sort--;
 		}
-		sort--;
-		state = ft_check_sort(pa, pb);
 	}
-	
 	ft_print_res(&res);
 }

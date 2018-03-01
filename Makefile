@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/02/15 10:23:58 by clanglai         ###   ########.fr        #
+#    Updated: 2018/02/28 16:29:27 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_BOTH=ft_actions_2.c \
 			ft_parse.c \
 			ft_concate.c \
 			ft_aux_fonc.c \
+			ft_aux_fonc_2.c \
 			ft_sort_2.c 
 SRC_PUSHSWAP=ft_pushswap_main.c
 SRC_CHECKER=ft_checker_main.c
