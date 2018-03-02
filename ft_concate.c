@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/01 13:50:22 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 12:47:07 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,32 @@ void	ft_print_res(t_pile **res)
 		}
 		tmp = tmp->next;
 	}
+	ft_free(res);
 }
 
+void	ft_free(t_pile **list)
+{
+	t_pile *tmp;
+	t_pile *next;
+
+	tmp = *list;
+	while (tmp)
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
+	}
+}
+/*
+void	ft_concat_ra_rb(t_pile **res, int state)
+{
+	t_pile *tmp;
+	int		i;
+
+	tmp = *res;
+}
+
+void	ft_concat_rra_rrb(t_pile **res)
+{
+	
+}*/

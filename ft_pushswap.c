@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/01 14:55:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:40:03 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,90 +95,30 @@ int		ft_create_a_pile_arg(t_pile **start, int argc, char **argv)
 	return (1);
 }
 
-int		ft_check_single_sort(t_pile **pa, int sort)
+void	ft_sort_first_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	t_pile *tmp;
-	int		prev;
-	int		state;
-	int		prev_s;
+	int state;
+	int last;
+	int	way;
+	int	i;
+	int	j;
 
-	if (!(*pa))
-		return (1);
-	if ((*pa)->sort != sort && sort != -1)
-		return (1);
-	if (!((*pa)->next))
-		return (1);
-	tmp = *pa;
-	prev = tmp->content;
-	prev = tmp->sort;
-	state = 1;
-	while (tmp)
+	if (ft_count_elem(pa, s))
+		last = ft_find_med(pa, ft_count_elem(pa, s), s);
+	else
+		last = 0;
+	j = 0;
+	i = ft_count_elem(pa, s);
+	way = (*pa)->next->sort == s || s == -1;
+	while (j < i)
 	{
-		if (tmp->content < prev && (tmp->sort == prev_s || sort == -1))
-			return (0);
-		prev = tmp->content;
-		prev_s = tmp->sort;
-		tmp = tmp->next;
+		way = way == 0 ? 0 : (*pa)->next->sort == s || s == -1;
+		if (((*pa)->content < last))
+			ft_add_at_end(res, 7, pa, pb);
+		else
+			ft_add_at_end(res, way == 1 ? 11 : 17, pa, pb);
+		j++;
 	}
-	return (1);
-}
-
-int		ft_check_single_inv_sort(t_pile **pa, int sort)
-{
-	t_pile *tmp;
-	int		prev;
-	int		prev_s;
-
-	if (!(*pa))
-		return (1);
-	if ((*pa)->sort != sort && sort != -1)
-		return (1);
-	if (!((*pa)->next))
-		return (1);
-	tmp = *pa;
-	prev = tmp->content;
-	prev_s = tmp->sort;
-	while (tmp)
-	{
-		if (tmp->content > prev && (tmp->sort == prev_s || sort == -1))
-			return (0);
-		prev = tmp->content;
-		prev_s = tmp->sort;
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-void	print_state(t_pile **pa, t_pile **pb)
-{
-	t_pile *tmp;
-
-	printf("\n-----------------------------------------------------------------------\n\n");
-	tmp = *pa;
-	if (tmp)
-	{
-		printf("	Pile a = ");
-		while(tmp->next)
-		{
-			printf("[%d %d] ", tmp->content, tmp->sort);
-			tmp = tmp->next;
-		}
-		printf("[%d %d]", tmp->content, tmp->sort);
-		printf("\n\n");
-	}
-	tmp = *pb;
-	if (tmp)
-	{
-		printf("	Pile b = ");
-		while(tmp->next)
-		{
-			printf("[%d %d] ", tmp->content, tmp->sort);
-			tmp = tmp->next;
-		}
-		printf("[%d %d]", tmp->content, tmp->sort);
-		printf("\n\n");
-	}
-	printf("-----------------------------------------------------------------------\n\n");
 }
 
 void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
@@ -195,30 +135,17 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 		last = 0;
 	j = 0;
 	i = ft_count_elem(pa, s);
-	way = (*pa)->next->sort == s;
-	while (j <= i)
+	way = (*pa)->next->sort == s || s == -1;
+	while ((way == 1 || ft_find_sort_x(pa, ft_count_elem(pa, -1)) == s) && ft_find_min(pb, s) <= last)
 	{
+		way = way == 0 ? 0 : (*pa)->next->sort == s || s == -1;
 		if (((*pa)->content < last))
 			ft_add_at_end(res, 7, pa, pb);
 		else
-			ft_add_at_end(res, way == 1 ? 17 : 11, pa, pb);
+			ft_add_at_end(res, way == 1 ? 11 : 17, pa, pb);
 		j++;
 	}
 }
-/*
-void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
-{
-	int	state;
-	int	way;
-	int i;
-   
-	state = ft_check_single_inv_sort(pb, s);
-	i = ft_find_max(pb, s);
-	way = ft_find_index(pa, i) > ft_count_elem(pb, -1) / 2;
-	while ((*pb)->content != i)
-		ft_add_at_end(res, way == 1 ? 19 : 13, pa, pb);
-	ft_add_at_end(res, 5, pa, pb);
-}*/
 
 void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
@@ -226,66 +153,29 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	int			way;
 	int			last;
 	int			j;
-//	int			state;
+	int			k;
 
-//	state = ft_check_single_inv_sort(pb, s);
-//	if (*pb && state)
-//		while ((*pb)->sort == s || (s == -1 && *pb))
-//			ft_add_at_end(res, 5, pa, pb);
 	if (ft_count_elem(pb, s))
 		last = ft_find_med(pb, ft_count_elem(pb, s), s);
 	else
 		last = 0;
 	i = ft_count_elem(pb, s);
-	way = (*pb)->next->sort == s;
 	j = 0;
-	while (j <= i)
+	k = 0;
+	way = (*pb)->next->sort == s || s == -1;
+	while ((way == 1 || ft_find_sort_x(pb, ft_count_elem(pb, -1)) == s)/* && ft_find_max(pb, s) >= last &&*/)
 	{
+		if (i == j && ft_count_elem(pb, -1) == ft_count_elem(pb, s))
+			break;
+		way = way == 0 ? 0 : (*pb)->next->sort == s || s == -1;
 		if ((*pb)->content > last && ((*pb)->sort == s || s == -1))
+		{
+			k++;
 			ft_add_at_end(res, 5, pa, pb);
+		}
 		else
 			ft_add_at_end(res, way == 1 ? 13 : 19, pa, pb);
 		j++;
-	}
-}
-
-void	ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
-{
-	int state;
-	int way;
-
-	state = ft_check_single_inv_sort(pb, s);
-	if (*pb && state)
-		while (*pb && ((*pb)->sort == s || (s == -1 && *pb)))
-			ft_add_at_end(res, 5, pa, pb);
-	while (state == 0)
-	{
-		if ((*pb)->content == ft_find_max(pb, s))
-			ft_add_at_end(res, 5, pa, pb);
-		else
-		{
-			way = ft_find_index(pb, ft_find_max(pb, s)) > ft_count_elem(pb, -1) / 2;
-			ft_add_at_end(res, way == 1 ? 19 : 13, pa, pb);
-		}
-		state = ft_count_elem(pb, s) == 0;
-	}
-}
-
-void	ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
-{
-	int		state;
-	
-	state = ft_check_single_sort(pa, s);
-	while (state == 0)
-	{
-		if ((*pa)->content > (*pa)->next->content && (*pa)->sort == (*pa)->next->sort
-				&& ((*pa)->sort == s || s == -1))
-			ft_add_at_end(res, 2, pa, pb);
-		else if ((*pa)->next->sort != s)
-			ft_add_at_end(res, 17, pa, pb);
-		else
-			ft_add_at_end(res, 11, pa, pb);
-		state = ft_check_single_sort(pa, -1);
 	}
 }
 
@@ -294,6 +184,7 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	int		state;
 	t_pile	*res;
 	int		sort;
+	int		i;
 
 	res = ft_lstnewpile(0);
 	sort = 1;
@@ -303,7 +194,7 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 			ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
 		else
 		{
-			ft_sort_pile_a(pa, pb, &res, -1);
+			ft_sort_first_pile_a(pa, pb, &res, -1);
 			ft_attribute_sort(pb, sort, 0);
 			sort++;
 		}
@@ -311,11 +202,11 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	sort--;
 	while (ft_check_sort(pa, pb) == 0)
 	{
-		while (ft_count_elem(pb, sort) > 3)
-			ft_sort_pile_b(pa, pb, &res, sort);
+		ft_sort_pile_b(pa, pb, &res, sort);
 		while (ft_count_elem(pa, sort) > 3)
 			ft_sort_pile_a(pa, pb, &res, sort);
 		ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
+		ft_attribute_sort(pa, 0, 1);
 		if (ft_check_single_sort(pa, -1) && ft_count_elem(pb, sort) <= 3)
 		{
 			ft_sort_pile_b_less_than_3(pa, pb, &res, sort);

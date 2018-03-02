@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/02/28 16:29:27 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/01 17:02:45 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJ=$(SRC_BOTH:.c=.o)
 OBJ_PUSHSWAP=$(SRC_PUSHWAP:.c=.o)
 OBJ_CHECKER=$(SRC_CHECKER:.c=.o)
 
-all : $(PUSHSWAP_NAME) $(CHECKER_NAME)
+all : $(SRC_BOTH) $(PUSHSWAP_NAME) $(CHECKER_NAME)
 
 $(PUSHSWAP_NAME) : $(OBJ) $(OBJ_PUSHSWAP)
 	make -C libft

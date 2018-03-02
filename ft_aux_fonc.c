@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:19:11 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/01 13:50:42 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 12:50:42 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_insert	ft_init_t_insert(t_insert ins, int n)
 	ins.found = 0;
 	return (ins);
 }
-
+/*
 void	ft_find_last_three(t_pile **pb, int sort, t_insert *max, int len)
 {
 	t_pile	*tmp;
@@ -59,7 +59,7 @@ void	ft_find_last_three(t_pile **pb, int sort, t_insert *max, int len)
 	max[1] = ft_init_t_insert(max[1], tab[len - 1]);
 	max[0] = ft_init_t_insert(max[0], tab[len - 2]);
 }
-
+*/
 int		ft_find_min_index(t_pile **pb, t_insert* max, int len)
 {
 	int		min;

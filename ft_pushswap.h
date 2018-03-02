@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/01 14:43:10 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 12:51:03 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ int					ft_find_max(t_pile **pa, int s);
 int					ft_check_sort(t_pile **pa, t_pile **pb);
 int					ft_check_double_input(t_pile **pa, int number);
 int					ft_find_max(t_pile **pa, int s);
+int					ft_check_single_sort(t_pile **pa, int sort);
+int					ft_check_single_inv_sort(t_pile **pa, int sort);
 int					ft_find_min(t_pile **pa, int s);
 int					ft_find_index(t_pile **pa, int x);
 int					ft_find_med(t_pile **pa, int len, int sort);
+int					ft_find_last_three(t_pile **pa, int len, int sort);
 int					ft_find_ele_x(t_pile **pa, int x);
+int					ft_find_sort_x(t_pile **pa, int x);
 int					ft_count_elem(t_pile **pa, int s);
 int					ft_create_a_pile_arg(t_pile **start, int argc, char **argv);
 void				ft_add_at_end(t_pile **st, int ac, t_pile **pa, t_pile**pb);
@@ -63,8 +67,12 @@ void				ft_attribute_sort(t_pile ** pb, int sort, int state);
 int					ft_find_value_below(t_pile **pa, int x, int s);
 int					ft_check_single_inv_sort(t_pile **pb, int s);
 int					ft_find_value_above(t_pile **pa, int x, int s);
-void				ft_find_last_three(t_pile **pb, int sort, t_insert *tab,
-		int len);
 int					ft_find_min_index(t_pile **pb, t_insert *max, int len);
 void				ft_print_state(t_pile **pa, t_pile **pb);
+void				ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb,
+		t_pile **res, int s);
+void				ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb,
+		t_pile **res, int s);
+void				ft_print_state(t_pile **pa, t_pile **pb);
+void				ft_free(t_pile **pile);
 #endif

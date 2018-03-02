@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 12:54:18 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:03:12 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ int	main(int argc ,char **argv)
 		}
 		ft_sort_pile(&start, &pb);
 	}
+	ft_free(&start);
+  	ft_free(&pb);
+	return(0);
 }

@@ -6,22 +6,52 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/15 12:54:24 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:12:53 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void	ft_sort_elem_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
+void	ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
+	int state;
+	int way;
+
+	state = ft_check_single_inv_sort(pb, s);
+	if (*pb && state)
+		while (*pb && ((*pb)->sort == s || (s == -1 && *pb)))
+			ft_add_at_end(res, 5, pa, pb);
+	state = ft_count_elem(pb, s) == 0;	
+	while (state == 0)
+	{
+		if ((*pb)->content == ft_find_max(pb, s))
+			ft_add_at_end(res, 5, pa, pb);
+		else
+		{
+			way = ft_find_index(pb, ft_find_max(pb, s)) > ft_count_elem(pb, -1) / 2;
+			ft_add_at_end(res, way == 1 ? 19 : 13, pa, pb);
+		}
+		state = ft_count_elem(pb, s) == 0;
+	}
 
 }
 
-void	ft_sort_elem_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
+void	ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	t_pile	*tmp;
-
-
+	int		state;
+	
+	state = ft_check_single_sort(pa, s);
+	while (state == 0)
+	{
+		if ((*pa)->content > (*pa)->next->content && (*pa)->sort == (*pa)->next->sort
+				&& ((*pa)->sort == s || s == -1))
+			ft_add_at_end(res, 2, pa, pb);
+		else if ((*pa)->next->sort != s)
+			ft_add_at_end(res, 17, pa, pb);
+		else
+			ft_add_at_end(res, 11, pa, pb);
+		state = ft_check_single_sort(pa, -1);
+	}
 }
 
 int		ft_find_index(t_pile **pa, int x)

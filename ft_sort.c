@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 14:41:20 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/01 13:51:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:54:55 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_find_med(t_pile **pa, int len, int sort)
 	if (!(tab = malloc(sizeof(int) * len + 1)))
 		exit (0);
 	tmp = *pa;
-	while (i < len)
+	while (tmp)
 	{
 		if (tmp->sort == sort || sort == -1)
 		{
@@ -69,6 +69,35 @@ int	ft_find_med(t_pile **pa, int len, int sort)
 	}
 	ft_sort_int_tab(tab, len);
 	med = tab[(len / 2)];
+	ft_memdel((void**)&tab);
+	return (med);
+}
+
+int	ft_find_last_three(t_pile **pa, int len, int sort)
+{
+	t_pile	*tmp;
+	int		i;
+	int		med;
+	int		*tab;
+	int		j;
+
+	j = 0;
+	i = 0;
+	if (!(tab = malloc(sizeof(int) * len + 1)))
+		exit (0);
+	tmp = *pa;
+	while (tmp)
+	{
+		if (tmp->sort == sort || sort == -1)
+		{
+			tab[j] = tmp->content;
+			j++;
+		}
+		i++;
+		tmp = tmp->next;
+	}
+	ft_sort_int_tab(tab, len);
+	med = tab[(len - 3)];
 	ft_memdel((void**)&tab);
 	return (med);
 }
