@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/02 13:12:53 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 12:43:55 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
 	int		state;
 	
-	state = ft_check_single_sort(pa, s);
+	state = ft_check_single_sort(pa, -1);
 	while (state == 0)
 	{
 		if ((*pa)->content > (*pa)->next->content && (*pa)->sort == (*pa)->next->sort
 				&& ((*pa)->sort == s || s == -1))
 			ft_add_at_end(res, 2, pa, pb);
 		else if ((*pa)->next->sort != s)
+	//	else if ((*pa)->content > ft_find_ele_x(pa, ft_count_elem(pa, -1)))
 			ft_add_at_end(res, 17, pa, pb);
 		else
 			ft_add_at_end(res, 11, pa, pb);

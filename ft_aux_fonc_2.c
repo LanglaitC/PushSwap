@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 14:21:13 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/02 12:51:28 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 12:39:26 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		ft_check_single_sort(t_pile **pa, int sort)
 {
 	t_pile *tmp;
 	int		prev;
-	int		state;
 	int		prev_s;
 
 	if (!(*pa))
@@ -59,8 +58,7 @@ int		ft_check_single_sort(t_pile **pa, int sort)
 		return (1);
 	tmp = *pa;
 	prev = tmp->content;
-	prev = tmp->sort;
-	state = 1;
+	prev_s = tmp->sort;
 	while (tmp)
 	{
 		if (tmp->content < prev && (tmp->sort == prev_s || sort == -1))

@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/02 13:40:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:14:52 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 	j = 0;
 	i = ft_count_elem(pa, s);
 	way = (*pa)->next->sort == s || s == -1;
-	while ((way == 1 || ft_find_sort_x(pa, ft_count_elem(pa, -1)) == s) && ft_find_min(pb, s) <= last)
+	while ((way == 1 || ft_find_sort_x(pa, ft_count_elem(pa, -1)) == s) && ft_find_min(pa, s) <= last)
 	{
 		way = way == 0 ? 0 : (*pa)->next->sort == s || s == -1;
 		if (((*pa)->content < last))
@@ -159,11 +159,13 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 		last = ft_find_med(pb, ft_count_elem(pb, s), s);
 	else
 		last = 0;
+	if (*pb)
+	{
 	i = ft_count_elem(pb, s);
 	j = 0;
 	k = 0;
 	way = (*pb)->next->sort == s || s == -1;
-	while ((way == 1 || ft_find_sort_x(pb, ft_count_elem(pb, -1)) == s)/* && ft_find_max(pb, s) >= last &&*/)
+	while ((way == 1 || ft_find_sort_x(pb, ft_count_elem(pb, -1)) == s) && ft_find_max(pb, s) >= last)
 	{
 		if (i == j && ft_count_elem(pb, -1) == ft_count_elem(pb, s))
 			break;
@@ -176,6 +178,7 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 		else
 			ft_add_at_end(res, way == 1 ? 13 : 19, pa, pb);
 		j++;
+	}
 	}
 }
 
@@ -202,14 +205,17 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	sort--;
 	while (ft_check_sort(pa, pb) == 0)
 	{
-		ft_sort_pile_b(pa, pb, &res, sort);
-		while (ft_count_elem(pa, sort) > 3)
-			ft_sort_pile_a(pa, pb, &res, sort);
+		ft_sort_pile_b(pa, pb, &res, ft_count_elem(pb, -2) ? -2 : sort);
+		ft_attribute_sort(pa, -2, 2);
+		while (ft_count_elem(pa, ft_count_elem(pa, -2) ? -2 : sort) > 3)
+			ft_sort_pile_a(pa, pb, &res, ft_count_elem(pa, -2) ? -2 : sort);
 		ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
 		ft_attribute_sort(pa, 0, 1);
-		if (ft_check_single_sort(pa, -1) && ft_count_elem(pb, sort) <= 3)
+		if (ft_check_single_sort(pa, -1) && ft_count_elem(pb, -2) <= 3)
 		{
+			ft_sort_pile_b_less_than_3(pa, pb, &res, -2);
 			ft_sort_pile_b_less_than_3(pa, pb, &res, sort);
+			ft_attribute_sort(pa, 0, 1);
 			sort--;
 		}
 	}
