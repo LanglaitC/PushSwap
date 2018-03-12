@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 13:14:52 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:37:23 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,11 +206,11 @@ void	ft_sort_pile(t_pile **pa, t_pile **pb)
 	while (ft_check_sort(pa, pb) == 0)
 	{
 		ft_sort_pile_b(pa, pb, &res, ft_count_elem(pb, -2) ? -2 : sort);
-		ft_attribute_sort(pa, -2, 2);
+		ft_attribute_sort(pa, -2, -2);
 		while (ft_count_elem(pa, ft_count_elem(pa, -2) ? -2 : sort) > 3)
 			ft_sort_pile_a(pa, pb, &res, ft_count_elem(pa, -2) ? -2 : sort);
 		ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
-		ft_attribute_sort(pa, 0, 1);
+		ft_attribute_sort(pa, 0, -1);
 		if (ft_check_single_sort(pa, -1) && ft_count_elem(pb, -2) <= 3)
 		{
 			ft_sort_pile_b_less_than_3(pa, pb, &res, -2);

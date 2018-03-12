@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:19:11 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 12:39:30 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:33:56 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	ft_attribute_sort(t_pile **pb, int sort, int state)
 	tmp = *pb;
 	while (tmp)
 	{
-		if (tmp->sort == 0 || state == 1)
-			if (state != 2)
-				tmp->sort = sort;
-		if (tmp->sort != 0 && state == 2)
+		if (state == 0 && tmp->sort == 0)
+			tmp->sort = sort;
+		else if ((tmp->sort == state || state == -1) && tmp->sort != 0)
 			tmp->sort = sort;
 		tmp = tmp->next;
 	}
