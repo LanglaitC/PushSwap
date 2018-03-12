@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 14:21:13 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:56:16 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:38:16 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,34 @@ void	ft_print_state(t_pile **pa, t_pile **pb)
 {
 	t_pile *tmp;
 
-	printf("\n-----------------------------------------------------------\n\n");
+	ft_printf("\n----------------------------------------------------\n\n");
 	tmp = *pa;
 	if (tmp)
 	{
 		printf("	Pile a = ");
-		while(tmp->next)
+		while (tmp)
 		{
-			printf("[%d %d] ", tmp->content, tmp->sort);
+			ft_printf("[%d %d] ", tmp->content, tmp->sort);
 			tmp = tmp->next;
 		}
-		printf("[%d %d]", tmp->content, tmp->sort);
-		printf("\n\n");
+		ft_printf("\n\n");
 	}
 	tmp = *pb;
 	if (tmp)
 	{
-		printf("	Pile b = ");
-		while(tmp->next)
+		ft_printf("	Pile b = ");
+		while (tmp)
 		{
-			printf("[%d %d] ", tmp->content, tmp->sort);
+			ft_printf("[%d %d] ", tmp->content, tmp->sort);
 			tmp = tmp->next;
 		}
-		printf("[%d %d]", tmp->content, tmp->sort);
-		printf("\n\n");
 	}
-	printf("-------------------------------------------------------------\n\n");
+	ft_printf("\n\n------------------------------------------------------\n\n");
 }
 
 int		ft_check_single_sort(t_pile **pa, int sort)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 	int		prev;
 	int		prev_s;
 
@@ -72,7 +69,7 @@ int		ft_check_single_sort(t_pile **pa, int sort)
 
 int		ft_check_single_inv_sort(t_pile **pa, int sort)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 	int		prev;
 	int		prev_s;
 
@@ -96,7 +93,7 @@ int		ft_check_single_inv_sort(t_pile **pa, int sort)
 	return (1);
 }
 
-int	ft_find_sort_x(t_pile **pa, int x)
+int		ft_find_sort_x(t_pile **pa, int x)
 {
 	t_pile	*tmp;
 	int		i;
@@ -105,7 +102,7 @@ int	ft_find_sort_x(t_pile **pa, int x)
 	tmp = *pa;
 	while (i < x - 1)
 	{
-		i ++;
+		i++;
 		tmp = tmp->next;
 	}
 	return (tmp->sort);

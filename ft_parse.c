@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:22:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:22:37 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:22:02 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_check_double_input(t_pile **pile, int number)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 
 	tmp = *pile;
 	while (tmp->next)
@@ -28,7 +28,7 @@ int	ft_check_double_input(t_pile **pile, int number)
 
 int	ft_count_sorted(t_pile **pa)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 	int		prev;
 	int		res;
 
@@ -54,7 +54,7 @@ int	ft_count_sorted(t_pile **pa)
 
 int	ft_count_inv_sorted(t_pile **pa)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 	int		prev;
 	int		res;
 
@@ -83,7 +83,7 @@ int	ft_is_next(t_pile **pa)
 	int		number;
 	t_pile	*tmp;
 
-	tmp = *pa;	
+	tmp = *pa;
 	number = tmp->content;
 	while (tmp->next)
 	{

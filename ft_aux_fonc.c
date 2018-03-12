@@ -6,13 +6,13 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:19:11 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 13:49:20 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:25:05 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void	ft_attribute_sort(t_pile **pb, int sort, int state)
+void		ft_attribute_sort(t_pile **pb, int sort, int state)
 {
 	t_pile *tmp;
 
@@ -34,7 +34,7 @@ t_insert	ft_init_t_insert(t_insert ins, int n)
 	return (ins);
 }
 
-int		ft_find_min_index(t_pile **pb, t_insert* max, int len)
+int			ft_find_min_index(t_pile **pb, t_insert *max, int len)
 {
 	int		min;
 	int		i;
@@ -45,7 +45,7 @@ int		ft_find_min_index(t_pile **pb, t_insert* max, int len)
 		if (max[i].found == 0 || i == len - 1)
 		{
 			min = ft_find_index(pb, max[i].content);
-			break;
+			break ;
 		}
 	}
 	i = 0;

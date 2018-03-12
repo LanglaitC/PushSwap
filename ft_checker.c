@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:37:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:39:26 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_choose_actions(t_pile **pa, t_pile **pb, char *line)
 }
 
 int		ft_is_valid_action(char *line)
-{	
+{
 	if (ft_strequ(line, "sa") == 1 || ft_strequ(line, "sb") == 1)
 		return (1);
 	if (ft_strequ(line, "ss") == 1 || ft_strequ(line, "pa") == 1)
@@ -71,9 +71,9 @@ int		ft_check_sort(t_pile **pa, t_pile **pb)
 			return (0);
 		prev = tmp->content;
 		tmp = tmp->next;
-	}	
+	}
 	if (tmp->content < prev)
-			return (0);
+		return (0);
 	tmp = *pb;
 	if (tmp)
 	{
@@ -89,7 +89,7 @@ int		ft_execute_actions(t_pile **pile_a)
 
 	line = NULL;
 	pile_b = NULL;
-	while(get_next_line(0, &line) == 1)
+	while (get_next_line(0, &line) == 1)
 	{
 		if (!(ft_is_valid_action(line)))
 			return (-1);

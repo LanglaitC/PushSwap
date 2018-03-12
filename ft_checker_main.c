@@ -6,16 +6,16 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:04:56 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:30:11 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_pile *start;
-	int	state;
+	t_pile	*start;
+	int		state;
 
 	state = 0;
 	start = NULL;

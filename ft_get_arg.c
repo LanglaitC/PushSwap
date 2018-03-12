@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:50:10 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:23:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:22:21 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int		ft_check_int(char *str)
 {
 	int i;
-	int state = 1;
+	int state;
 
+	state = 1;
 	i = 0;
 	while (str[i])
 	{

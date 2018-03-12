@@ -6,13 +6,13 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:22:53 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:23:23 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	main(int argc ,char **argv)
+int	main(int argc, char **argv)
 {
 	t_pile	*start;
 	t_pile	*pb;
@@ -34,6 +34,6 @@ int	main(int argc ,char **argv)
 		ft_sort_pile(&start, &pb);
 	}
 	ft_free(&start);
-  	ft_free(&pb);
-	return(0);
+	ft_free(&pb);
+	return (0);
 }

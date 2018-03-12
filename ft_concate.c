@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:57:29 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:40:46 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_concat_rb_rrb(t_pile **res, int s)
 	count = 1;
 	i = 0;
 	while ((*res)->next && count)
-		if ((s == 13 || s == 19) && ((*res)->next->content == 13 || (*res)->next->content == 19))
+		if ((s == 13 || s == 19) && ((*res)->next->content == 13 ||
+					(*res)->next->content == 19))
 		{
 			if (s == 13)
 				count += ((*res)->next->content == 13) ? 1 : -1;
@@ -74,7 +75,8 @@ void	ft_concat_ra_rra(t_pile **res, int s)
 	count = 1;
 	i = 0;
 	while ((*res)->next && count)
-		if ((s == 11 || s == 17) && ((*res)->next->content == 11 || (*res)->next->content == 17))
+		if ((s == 11 || s == 17) && ((*res)->next->content == 11 ||
+					(*res)->next->content == 17))
 		{
 			if (s == 11)
 				count += ((*res)->next->content == 11) ? 1 : -1;
@@ -83,7 +85,7 @@ void	ft_concat_ra_rra(t_pile **res, int s)
 			*res = (*res)->next;
 		}
 		else
-			break;
+			break ;
 	while (i < count)
 	{
 		if (s == 11)
@@ -96,7 +98,7 @@ void	ft_concat_ra_rra(t_pile **res, int s)
 
 void	ft_print_res(t_pile **res)
 {
-	t_pile *tmp;
+	t_pile	*tmp;
 	int		state;
 
 	tmp = *res;
@@ -123,7 +125,7 @@ void	ft_print_res(t_pile **res)
 			else if (tmp->content == 3)
 				ft_printf("sb\n");
 			else if (tmp->content == 5)
-				ft_printf("pa\n");			
+				ft_printf("pa\n");
 			else if (tmp->content == 7)
 				ft_printf("pb\n");
 			else if (tmp->content == 11)
