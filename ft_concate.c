@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:40:46 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:54:23 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,8 @@ void	ft_print_res(t_pile **res)
 		}
 		else
 		{
-			if (tmp->content == 2)
-				ft_printf("sa\n");
-			else if (tmp->content == 3)
-				ft_printf("sb\n");
+			if (tmp->content == 2 || tmp->content == 3)
+				ft_printf("%s\n", tmp->content == 2 ? "sa" || sb);
 			else if (tmp->content == 5)
 				ft_printf("pa\n");
 			else if (tmp->content == 7)
