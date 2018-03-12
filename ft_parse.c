@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:22:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/02 12:49:04 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:22:37 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	ft_is_next(t_pile **pa)
 {
 	int		number;
 	t_pile	*tmp;
-	
+
+	tmp = *pa;	
 	number = tmp->content;
 	while (tmp->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 12:10:31 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:57:29 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_concat_rb_rrb(t_pile **res, int s)
 			*res = (*res)->next;
 		}
 		else
-			break;
+			break ;
 	while (i < count)
 	{
 		if (s == 13)
@@ -152,12 +152,4 @@ void	ft_free(t_pile **list)
 		free(tmp);
 		tmp = next;
 	}
-}
-
-void	ft_concat_ra_rb(t_pile **res, int s)
-{
-	t_pile *tmp;
-	int		i;
-
-	tmp = *res;
 }

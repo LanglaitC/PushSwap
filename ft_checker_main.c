@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/25 12:12:29 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:04:56 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (argc == 2)
-			state = ft_create_a_pile_arg(&start, argc, argv);
+			state = ft_create_a_pile_arg(&start, argv);
 		else
 			state = ft_create_a_pile(&start, argc, argv);
 		if (!state)
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 			ft_printf("Error\n");
 			return (0);
 		}
-		if ((state = ft_execute_actions(&start, argc, argv)) == 0)
+		if ((state = ft_execute_actions(&start)) == 0)
 			ft_printf("KO\n");
 		else if (state == 1)
 			ft_printf("OK\n");

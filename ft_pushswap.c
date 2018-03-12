@@ -6,98 +6,14 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 13:37:23 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:01:40 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int		ft_check_int(char *str)
-{
-	int i;
-	int state = 1;
-
-	i = 0;
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]) == 0 && (str[i] != '-' || state != 1))
-			return (0);
-		if (ft_isdigit(str[i]) == 1)
-			state = 0;
-		i++;
-	}
-	return (1);
-}
-
-t_pile	*ft_lstnewpile(int i)
-{
-	t_pile *new;
-
-	if (!(new = malloc(sizeof(t_pile))))
-		exit(0);
-	new->content = i;
-	new->sort = 0;
-	new->next = NULL;
-	return (new);
-}
-
-int		ft_create_a_pile(t_pile **start, int argc, char **argv)
-{
-	t_pile	*tmp;
-	int		i;
-	int		number;
-
-	i = 1;
-	if (ft_check_int(argv[i]) == 0)
-		return (0);
-	*start = ft_lstnewpile(ft_atoi(argv[i++]));
-	tmp = *start;
-	while (i < argc)
-	{
-		if (ft_check_int(argv[i]) == 0)
-			return (0);
-		number = ft_atoi(argv[i]);
-		tmp->next = ft_lstnewpile(number);
-		if (ft_check_double_input(start, number) == 0)
-			return (0);
-		tmp = tmp->next;
-		i++;
-	}
-	return (1);
-}
-
-int		ft_create_a_pile_arg(t_pile **start, int argc, char **argv)
-{
-	t_pile	*tmp;
-	int		i;
-	int		number;
-	char	**tab;
-
-	i = 0;
-	tab = ft_strsplit(argv[1], ' ');
-	if (ft_check_int(tab[i]) == 0)
-		return (0);
-	*start = ft_lstnewpile(ft_atoi(tab[i++]));
-	tmp = *start;
-	while (tab[i])
-	{
-		if (ft_check_int(tab[i]) == 0)
-			return (0);
-		number = ft_atoi(tab[i]);
-		tmp->next = ft_lstnewpile(number);
-		if (ft_check_double_input(start, number) == 0)
-			return (0);
-		tmp = tmp->next;
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (1);
-}
-
 void	ft_sort_first_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	int state;
 	int last;
 	int	way;
 	int	i;
@@ -123,7 +39,6 @@ void	ft_sort_first_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 
 void	ft_sort_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {
-	int state;
 	int last;
 	int	way;
 	int	i;
@@ -184,10 +99,8 @@ void	ft_sort_pile_b(t_pile **pa, t_pile **pb, t_pile **res, int s)
 
 void	ft_sort_pile(t_pile **pa, t_pile **pb)
 {
-	int		state;
 	t_pile	*res;
 	int		sort;
-	int		i;
 
 	res = ft_lstnewpile(0);
 	sort = 1;

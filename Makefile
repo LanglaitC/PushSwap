@@ -6,13 +6,13 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/01 17:02:45 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/12 14:18:26 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 
-FLAG=-Wall -Wextra -Werror
+FLAGS=-Wall -Wextra -Werror
 
 PUSHSWAP_NAME=push_swap
 CHECKER_NAME=checker
@@ -27,7 +27,8 @@ SRC_BOTH=ft_actions_2.c \
 			ft_concate.c \
 			ft_aux_fonc.c \
 			ft_aux_fonc_2.c \
-			ft_sort_2.c 
+			ft_sort_2.c \
+			ft_get_arg.c
 SRC_PUSHSWAP=ft_pushswap_main.c
 SRC_CHECKER=ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)
@@ -43,6 +44,9 @@ $(PUSHSWAP_NAME) : $(OBJ) $(OBJ_PUSHSWAP)
 $(CHECKER_NAME) : $(OBJ) $(OBJ_CHECKER)
 	make -C libft
 	gcc -o $(CHECKER_NAME) $(OBJ) $(OBJ_CHECKER) -L$(LIB_PATH) -$(LIB_NAME)
+
+%.o : %.c
+	$(CC) $(FLAGS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)
