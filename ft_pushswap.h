@@ -6,15 +6,15 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 14:59:26 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:49:32 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSHSWAP_H
 # define FT_PUSHSWAP_H
 
-#include "libft/inc/libft.h"
-#include "libft/inc/ft_printf.h"
+# include "libft/inc/libft.h"
+# include "libft/inc/ft_printf.h"
 
 typedef	struct		s_pile
 {
@@ -63,7 +63,7 @@ void				ft_print_res(t_pile **res);
 int					ft_count_sorted(t_pile **pile);
 int					ft_count_inv_sorted(t_pile **pile);
 int					ft_is_next(t_pile **pa);
-void				ft_attribute_sort(t_pile ** pb, int sort, int state);
+void				ft_attribute_sort(t_pile **pb, int sort, int state);
 int					ft_find_value_below(t_pile **pa, int x, int s);
 int					ft_check_single_inv_sort(t_pile **pb, int s);
 int					ft_find_value_above(t_pile **pa, int x, int s);

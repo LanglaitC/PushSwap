@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:36:30 by clanglai          #+#    #+#             */
-/*   Updated: 2018/01/05 13:18:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:31:46 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static	int	ft_readfile(const int fd, char **line, char **save, int state)
 			buff[ret] = '\0';
 			if (ft_strchr(buff, '\n'))
 			{
-				free(*save);
-				*save = ft_strdup(ft_strchr(buff, '\n') + 1);
+				*save = ft_strcpy(*save, ft_strchr(buff, '\n') + 1);
 				state = 2;
 				buff[ret - ft_strlen(ft_strchr(buff, '\n'))] = '\0';
 			}
@@ -46,7 +45,7 @@ static	int	ft_readfile(const int fd, char **line, char **save, int state)
 				return (-1);
 		}
 		else if (ret == 0)
-			return (0);
+			state = 0;
 		else
 			return (-1);
 	free(buff);
@@ -59,19 +58,17 @@ int			get_line(const int fd, char **line, int ret)
 
 	if (!save)
 		save = ft_strnew(BUFF_SIZE);
-	*line = ft_strnew(BUFF_SIZE);
 	if (ft_strchr(save, '\n') != NULL)
 	{
-		*line = ft_strncat(*line, save, ft_strlen(save) -
+		*line = ft_strsub(save, 0, ft_strlen(save) -
 				ft_strlen(ft_strchr(save, '\n')));
-		save = ft_strdup(ft_strchr(save, '\n') + 1);
+		save = ft_strcpy(save, ft_strchr(save, '\n') + 1);
 		ret = 1;
 	}
 	else
 	{
-		*line = ft_strcat(*line, save);
-		free(save);
-		save = ft_strnew(BUFF_SIZE);
+		*line = ft_strdup(save);
+		ft_strclr(save);
 	}
 	if (ft_strlen(save) == 0 && ret != 1)
 		if ((ret = ft_readfile(fd, line, &save, 1)) == -1)

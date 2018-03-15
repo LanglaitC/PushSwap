@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:50:10 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:22:21 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:53:09 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		ft_create_a_pile_arg(t_pile **start, char **argv)
 	tab = ft_strsplit(argv[1], ' ');
 	if (ft_check_int(tab[i]) == 0)
 		return (0);
+	free(tab[i]);
 	*start = ft_lstnewpile(ft_atoi(tab[i++]));
 	tmp = *start;
 	while (tab[i])
@@ -89,8 +90,7 @@ int		ft_create_a_pile_arg(t_pile **start, char **argv)
 		if (ft_check_double_input(start, number) == 0)
 			return (0);
 		tmp = tmp->next;
-		free(tab[i]);
-		i++;
+		free(tab[i++]);
 	}
 	free(tab);
 	return (1);

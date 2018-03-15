@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:54:23 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:51:35 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,38 +104,21 @@ void	ft_print_res(t_pile **res)
 	tmp = *res;
 	while (tmp)
 	{
-		if (tmp->next)
-			state = tmp->content * tmp->next->content;
-		else
-			state = 0;
-		if (state == 6 || state == 143 || state == 323)
-		{
-			tmp = tmp->next;
-			if (state == 6)
-				ft_printf("ss\n");
-			if (state == 143)
-				ft_printf("rr\n");
-			if (state == 323)
-				ft_printf("rrr\n");
-		}
-		else
-		{
-			if (tmp->content == 2 || tmp->content == 3)
-				ft_printf("%s\n", tmp->content == 2 ? "sa" || sb);
-			else if (tmp->content == 5)
-				ft_printf("pa\n");
-			else if (tmp->content == 7)
-				ft_printf("pb\n");
-			else if (tmp->content == 11)
-				ft_concat_ra_rra(&tmp, 11);
-			else if (tmp->content == 13)
-				ft_concat_rb_rrb(&tmp, 13);
-			else if (tmp->content == 17)
-				ft_concat_ra_rra(&tmp, 17);
-			else if (tmp->content == 19)
-				ft_concat_rb_rrb(&tmp, 19);
-		}
-		tmp = tmp->next;
+		state = tmp->next ? tmp->content * tmp->next->content : 0;
+		if (state == 6 || state == 143)
+			ft_printf("%s\n", state == 6 ? "ss" : "rr");
+		else if (state == 323)
+			ft_printf("rrr\n");
+		else if (tmp->content == 2 || tmp->content == 3)
+			ft_printf("%s\n", tmp->content == 2 ? "sa" : "sb");
+		else if (tmp->content == 5 || tmp->content == 7)
+			ft_printf("%s\n", tmp->content == 5 ? "pa" : "pb");
+		else if (tmp->content == 11 || tmp->content == 17)
+			ft_concat_ra_rra(&tmp, tmp->content);
+		else if (tmp->content == 13 || tmp->content == 19)
+			ft_concat_rb_rrb(&tmp, tmp->content);
+		tmp = state == 6 || state == 143 || state == 323 ?
+			tmp->next->next : tmp->next;
 	}
 	ft_free(res);
 }

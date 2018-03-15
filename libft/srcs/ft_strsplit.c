@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 10:08:03 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/01 15:30:06 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:48:23 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static char	*ft_get_words(char **str, char c)
 	return (cpy);
 }
 
-
 char		**ft_strsplit(char const *s, char c)
 {
 	char	*cpy;
@@ -71,9 +70,8 @@ char		**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	words = ft_count_words(s, c);
-	if (!(cpy = ft_strdup(s)))
-		return (NULL);
-	if (!(tab =  (char**)malloc(sizeof(char*) * (words + 1))))
+	cpy = (char*)s;
+	if (!(tab = (char**)malloc(sizeof(char*) * (words + 1))))
 		return (NULL);
 	while (i < words)
 	{

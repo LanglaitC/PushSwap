@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:39:26 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:37:38 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,12 @@ int		ft_execute_actions(t_pile **pile_a)
 		if (!(ft_is_valid_action(line)))
 			return (-1);
 		ft_choose_actions(pile_a, &pile_b, line);
+		free(line);
 	}
+	free(line);
 	if (!(ft_check_sort(pile_a, &pile_b)))
 		return (0);
+	ft_free(pile_a);
+	ft_free(&pile_b);
 	return (1);
 }
