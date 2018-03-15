@@ -6,18 +6,21 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/12 14:18:26 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/15 15:32:07 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 
 FLAGS=-Wall -Wextra -Werror
-
 PUSHSWAP_NAME=push_swap
 CHECKER_NAME=checker
 LIB_PATH =libft
 LIB_NAME=lftprintf
+LIBG_PATH=minilibx
+LIBG=lmlx
+FRAMEWORK1=OpenGl
+FRAMEWORK2=AppKit
 SRC_BOTH=ft_actions_2.c \
 			ft_checker.c \
 			ft_pushswap.c \
@@ -28,9 +31,10 @@ SRC_BOTH=ft_actions_2.c \
 			ft_aux_fonc.c \
 			ft_aux_fonc_2.c \
 			ft_sort_2.c \
-			ft_get_arg.c
-SRC_PUSHSWAP=ft_pushswap_main.c
-SRC_CHECKER=ft_checker_main.c
+			ft_get_arg.c \
+			ft_visualize.c
+SRC_PUSHSWAP=	ft_pushswap_main.c
+SRC_CHECKER=	ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)
 OBJ_PUSHSWAP=$(SRC_PUSHWAP:.c=.o)
 OBJ_CHECKER=$(SRC_CHECKER:.c=.o)
@@ -39,11 +43,16 @@ all : $(SRC_BOTH) $(PUSHSWAP_NAME) $(CHECKER_NAME)
 
 $(PUSHSWAP_NAME) : $(OBJ) $(OBJ_PUSHSWAP)
 	make -C libft
-	gcc -o $(PUSHSWAP_NAME) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) -$(LIB_NAME)
+	gcc -o $(PUSHSWAP_NAME) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) -$(LIB_NAME) \
+	-L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
+	$(FRAMEWORK2)
 
 $(CHECKER_NAME) : $(OBJ) $(OBJ_CHECKER)
 	make -C libft
-	gcc -o $(CHECKER_NAME) $(OBJ) $(OBJ_CHECKER) -L$(LIB_PATH) -$(LIB_NAME)
+	make -C minilibx
+	gcc $(FLAGS) -o $(CHECKER_NAME) $(OBJ) $(OBJ_CHECKER) -L$(LIB_PATH) \
+	-$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
+	$(FRAMEWORK2)
 
 %.o : %.c
 	$(CC) $(FLAGS) -o $@ -c $<

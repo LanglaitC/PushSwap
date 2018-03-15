@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 12:37:38 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 15:42:14 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,32 @@ int		ft_check_sort(t_pile **pa, t_pile **pb)
 	return (1);
 }
 
-int		ft_execute_actions(t_pile **pile_a)
+void	ft_handle_keys(int keycode, t_win *win)
+{
+	if (keycode == 53)
+		exit(0);
+	if (keycode == 12)
+}
+
+int		ft_execute_actions(t_pile **pile_a, t_pile **pile_b)
 {
 	char	*line;
-	t_pile	*pile_b;
+	t_win	win;
 
 	line = NULL;
-	pile_b = NULL;
+	ft_initialize_window(&win, *pile_a);
 	while (get_next_line(0, &line) == 1)
 	{
 		if (!(ft_is_valid_action(line)))
 			return (-1);
-		ft_choose_actions(pile_a, &pile_b, line);
+		ft_choose_actions(pile_a, pile_b, line);
+		mlx_key_hook(win.win, ft_handle_keys, pi);
 		free(line);
 	}
 	free(line);
-	if (!(ft_check_sort(pile_a, &pile_b)))
+	if (!(ft_check_sort(pile_a, pile_b)))
 		return (0);
 	ft_free(pile_a);
-	ft_free(&pile_b);
+	ft_free(pile_b);
 	return (1);
 }

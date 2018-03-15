@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 13:00:54 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:42:47 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,14 @@ static void	ft_sort_pile_2(t_pile **pa, t_pile **pb, t_pile *res, int sort)
 {
 	while (ft_check_sort(pa, pb) == 0)
 	{
-		while (ft_count_elem(pb, ft_count_elem(pb, sort) > 12))
-			ft_sort_pile_b(pa, pb, &res, ft_count_elem(pb, -2) ? -2 : sort);
-		ft_attribute_sort(pa, -2, -2);
-		while (ft_count_elem(pa, ft_count_elem(pa, -2) ? -2 : sort) > 3)
-			ft_sort_pile_a(pa, pb, &res, ft_count_elem(pa, -2) ? -2 : sort);
+		while (ft_count_elem(pb, sort) > 6)
+			ft_sort_pile_b(pa, pb, &res, sort);
+		while (ft_count_elem(pa, sort) > 3)
+			ft_sort_pile_a(pa, pb, &res, sort);
 		ft_sort_pile_a_less_than_3(pa, pb, &res, -1);
 		ft_attribute_sort(pa, 0, -1);
 		if (ft_check_single_sort(pa, -1))
 		{
-			ft_sort_pile_b_less_than_3(pa, pb, &res, -2);
 			ft_sort_pile_b_less_than_3(pa, pb, &res, sort);
 			ft_attribute_sort(pa, 0, 1);
 			sort--;

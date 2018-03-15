@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 12:49:32 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/15 15:41:58 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "libft/inc/libft.h"
 # include "libft/inc/ft_printf.h"
+# include "minilibx/mlx.h"
+
+# define T_WIDTH 800
+# define T_HEIGHT 1200
 
 typedef	struct		s_pile
 {
@@ -29,11 +33,26 @@ typedef struct		s_insert
 	int				found;
 }					t_insert;
 
+typedef struct		s_win
+{
+	t_pile	*pa;
+	t_pile	*pb;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*str;
+	int		nb_ele;
+	int		bpp;
+	int		s_p;
+	int		end;
+	int		*tab;
+}					t_win;
+
 void				ft_sort_pile(t_pile **pile, t_pile **pb);
 int					ft_create_a_pile(t_pile **start, int argc, char **argv);
 t_pile				*ft_lstnewpile(int i);
 int					ft_check_int(char *str);
-int					ft_execute_actions(t_pile **pile_a);
+int					ft_execute_actions(t_pile **pile_a, t_pile **pb);
 void				ft_sa(t_pile *pa);
 void				ft_sb(t_pile *pb);
 void				ft_ss(t_pile *pa, t_pile *pb);
@@ -75,4 +94,6 @@ void				ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb,
 		t_pile **res, int s);
 void				ft_print_state(t_pile **pa, t_pile **pb);
 void				ft_free(t_pile **pile);
+void				ft_initialize_window(t_win *win, t_pile *pa);
+void				ft_print_graph(t_pile *pb, t_pile *pa, t_win win);
 #endif
