@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:34:07 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:50:09 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(int argc, char **argv)
 
 	win.pa = NULL;
 	win.pb = NULL;
+	win.c_flag = ft_strequ(argv[1], "-c");
 	if (argc > 1)
 	{
-		if (argc == 2 || (argc == 3 && ft_strequ(argv[1], "-c")))
+		if (argc == 2 || (argc == 3 && win.c_flag))
 			state = ft_create_a_pile_arg(&win, argv);
 		else
 			state = ft_create_a_pile(&win, argc, argv);
@@ -29,7 +30,6 @@ int	main(int argc, char **argv)
 			ft_printf("Error\n");
 		else
 		{
-			win.c_flag = ft_strequ(argv[1], "-c");
 			if (win.c_flag)
 				ft_initialize_window(&win, win.pa);
 			if ((state = ft_execute_actions(&win)) == 0)

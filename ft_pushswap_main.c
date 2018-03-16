@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:37:16 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:48:56 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	int		state;
 
 	win.pa = NULL;
+	win.c_flag = 0;
 	win.pb = NULL;
 	if (argc > 1)
 	{
