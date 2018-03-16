@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:50:09 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:09:44 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 			if ((state = ft_execute_actions(&win)) == 0)
 				ft_printf("KO\n");
 			else
-				ft_printf("%s\n",state == -1 ?  "Error" : "OK");
+				ft_printf("%s\n", state == -1 ?  "Error" : "OK");
 		}
 	}
 	return (0);

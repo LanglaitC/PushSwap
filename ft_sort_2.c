@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:46:03 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:45:34 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb, t_pile **re, int s)
 				&& (*pa)->sort == (*pa)->next->sort
 				&& ((*pa)->sort == s || s == -1))
 			ft_add_at_end(re, 2, pa, pb);
-		else if ((*pa)->next->sort == s)
+		else if ((*pa)->next->sort != s)
 			ft_add_at_end(re, 17, pa, pb);
 		else
 			ft_add_at_end(re, 11, pa, pb);

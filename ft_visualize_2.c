@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:14:04 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:01:43 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:36:42 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int		ft_tab_index(int *tab, int val, int len)
 		i++;
 	}
 	return (-1);
+}
+
+int	ft_handle_keys(int keycode, t_win *win)
+{
+	if (keycode == 53)
+		exit(0);
+	if (keycode == 12)
+		if (win->acts)
+			ft_exec_all(win);
+	return (1);
 }
 
 int		ft_handle_keypressing(t_win *win)

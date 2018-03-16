@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:29:31 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:15:25 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ int		ft_is_valid_action(t_win *win, char *line)
 	char	*act;
 	
 	tmp = win->acts;
+	act = ft_strdup(line);
 	if (tmp)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = ft_lstnew(act = ft_strdup(line), ft_strlen(line));
-		free(act);
+		tmp->next = ft_lstnew(act, ft_strlen(act) + 1);
 	}
 	else
-		win->acts = ft_lstnew(line, ft_strlen(line));
-
+		win->acts = ft_lstnew(act, ft_strlen(act) + 1);
+	free(act);
 	if (ft_strequ(line, "sa") == 1 || ft_strequ(line, "sb") == 1)
 		return (1);
 	if (ft_strequ(line, "ss") == 1 || ft_strequ(line, "pa") == 1)
@@ -67,9 +67,7 @@ int		ft_is_valid_action(t_win *win, char *line)
 		return (1);
 	if (ft_strequ(line, "rra") == 1 || ft_strequ(line, "rrb") == 1)
 		return (1);
-	if (ft_strequ(line, "rrr") == 1)
-		return (1);
-	return (0);
+	return (ft_strequ(line, "rrr") == 1 ? 1 :0);
 }
 
 int		ft_check_sort(t_pile **pa, t_pile **pb)
@@ -98,46 +96,52 @@ int		ft_check_sort(t_pile **pa, t_pile **pb)
 
 void	ft_exec_all(t_win *win)
 {
+	t_list *next;
+
 	ft_choose_actions(&win->pa, &win->pb, win->acts->content);
+	next = win->acts->next;
 	free(win->acts->content);
 	free(win->acts);
-	win->acts = win->acts->next;
+	win->acts = next;
 	if (win->c_flag)
 		ft_print_graph(win->pa, win->pb, win);
-}
-
-int	ft_handle_keys(int keycode, t_win *win)
-{
-	if (keycode == 53)
-		exit(0);
-	if (keycode == 12)
-		if (win->acts)
-			ft_exec_all(win);
-	return (1);
 }
 
 int		ft_execute_actions(t_win *win)
 {
 	char	*line;
+	int		i;
 
 	line = NULL;
 	win->acts = NULL;
+	i = 0;
 	while (get_next_line(0, &line) == 1)
 	{
 		if (!(ft_is_valid_action(win, line)))
 			return (-1);
+	//	ft_choose_actions(&win->pa, &win->pb, line);
 		free(line);
+		i++;
 	}
+//	printf("Coups = %d\n", i);
 	free(line);
-	ft_exec_all(win);
+	i = 0;
 	if (win->c_flag)
 	{
 		mlx_loop_hook(win->mlx, ft_handle_keypressing, win);
 		mlx_loop(win->mlx);
 	}
 	else
+	{
 		while (win->acts)
+		{
 			ft_exec_all(win);
+			i++;
+		}
+	}
+//	printf("Coups 2 = %d\n", i);
+//	printf("SORT\n");
+	//ft_print_state(&win->pa, &win->pb);
 	if (!(ft_check_sort(&win->pa, &win->pb)))
 		return (0);
 	ft_free(&win->pa);

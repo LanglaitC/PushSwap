@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:44:19 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:17:14 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_win
 	int		end;
 	int		*tab;
 	int		c_flag;
+	int		size_l;
 }					t_win;
 
 void				ft_sort_pile(t_pile **pile, t_pile **pb);
@@ -101,4 +102,5 @@ void				ft_print_graph(t_pile *pb, t_pile *pa, t_win *win);
 int					ft_handle_keypressing(t_win *win);
 int					ft_tab_index(int *tab, int val, int len);
 int					ft_handle_keys(int keycode, t_win *win);
+void				ft_exec_all(t_win *win);
 #endif

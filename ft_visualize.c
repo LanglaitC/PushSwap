@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:42:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:41:40 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:17:11 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	ft_initialize_window(t_win *win, t_pile *pa)
 	win->nb_ele = ft_count_elem(&pa, -1);
 	if (!(win->tab = malloc(sizeof(int) * (win->nb_ele + 1))))
 		exit(1);
+	if (win->nb_ele > 600)
+		win->size_l = 1;
+	else
+		win->size_l = win->nb_ele > 300 ? 2 : 1;
 	win->mlx = mlx_init();
 	win->win = mlx_new_window(win->mlx, T_WIDTH, T_HEIGHT, "Push_Swap");
 	win->img = mlx_new_image(win->mlx, T_WIDTH, T_HEIGHT);
@@ -60,7 +64,7 @@ void	ft_line(int height, int width, int s, t_win *win)
 	while (i < x + T_WIDTH / 6 * ((float)width / win->nb_ele) * 2)
 	{
 		j = 0;
-		while (j < 3)
+		while (j < win->size_l)
 		{
 			ft_pixel_put_image(win, i, j + y, width);
 			j++;
