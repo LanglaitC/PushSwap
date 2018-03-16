@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 15:31:49 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:34:07 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 int	main(int argc, char **argv)
 {
-	t_pile	*start;
+	t_win	win;
 	int		state;
-	t_pile	*pb;
 
-	pb = NULL;
-	start = NULL;
+	win.pa = NULL;
+	win.pb = NULL;
 	if (argc > 1)
 	{
-		if (argc == 2)
-			state = ft_create_a_pile_arg(&start, argv);
+		if (argc == 2 || (argc == 3 && ft_strequ(argv[1], "-c")))
+			state = ft_create_a_pile_arg(&win, argv);
 		else
-			state = ft_create_a_pile(&start, argc, argv);
+			state = ft_create_a_pile(&win, argc, argv);
 		if (!state)
+			ft_printf("Error\n");
+		else
 		{
-			ft_printf("Error\n");
-			return (0);
+			win.c_flag = ft_strequ(argv[1], "-c");
+			if (win.c_flag)
+				ft_initialize_window(&win, win.pa);
+			if ((state = ft_execute_actions(&win)) == 0)
+				ft_printf("KO\n");
+			else
+				ft_printf("%s\n",state == -1 ?  "Error" : "OK");
 		}
-		if ((state = ft_execute_actions(&start, &pb)) == 0)
-			ft_printf("KO\n");
-		else if (state == 1)
-			ft_printf("OK\n");
-		else if (state == -1)
-			ft_printf("Error\n");
 	}
 	return (0);
 }

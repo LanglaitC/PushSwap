@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 15:41:58 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:35:17 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_win
 {
 	t_pile	*pa;
 	t_pile	*pb;
+	t_list	*acts;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -46,13 +47,14 @@ typedef struct		s_win
 	int		s_p;
 	int		end;
 	int		*tab;
+	int		c_flag;
 }					t_win;
 
 void				ft_sort_pile(t_pile **pile, t_pile **pb);
-int					ft_create_a_pile(t_pile **start, int argc, char **argv);
+int					ft_create_a_pile(t_win *win, int argc, char **argv);
 t_pile				*ft_lstnewpile(int i);
 int					ft_check_int(char *str);
-int					ft_execute_actions(t_pile **pile_a, t_pile **pb);
+int					ft_execute_actions(t_win *win);
 void				ft_sa(t_pile *pa);
 void				ft_sb(t_pile *pb);
 void				ft_ss(t_pile *pa, t_pile *pb);
@@ -76,7 +78,7 @@ int					ft_find_last_three(t_pile **pa, int len, int sort);
 int					ft_find_ele_x(t_pile **pa, int x);
 int					ft_find_sort_x(t_pile **pa, int x);
 int					ft_count_elem(t_pile **pa, int s);
-int					ft_create_a_pile_arg(t_pile **start, char **argv);
+int					ft_create_a_pile_arg(t_win *wim, char **argv);
 void				ft_add_at_end(t_pile **st, int ac, t_pile **pa, t_pile**pb);
 void				ft_print_res(t_pile **res);
 int					ft_count_sorted(t_pile **pile);
@@ -95,5 +97,8 @@ void				ft_sort_pile_a_less_than_3(t_pile **pa, t_pile **pb,
 void				ft_print_state(t_pile **pa, t_pile **pb);
 void				ft_free(t_pile **pile);
 void				ft_initialize_window(t_win *win, t_pile *pa);
-void				ft_print_graph(t_pile *pb, t_pile *pa, t_win win);
+void				ft_print_graph(t_pile *pb, t_pile *pa, t_win *win);
+int					ft_handle_keypressing(t_win *win);
+int					ft_tab_index(int *tab, int val, int len);
+int					ft_handle_keys(int keycode, t_win *win);
 #endif

@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/15 15:32:07 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/16 12:27:11 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_BOTH=ft_actions_2.c \
 			ft_aux_fonc_2.c \
 			ft_sort_2.c \
 			ft_get_arg.c \
-			ft_visualize.c
+			ft_visualize.c \
+			ft_visualize_2.c
 SRC_PUSHSWAP=	ft_pushswap_main.c
 SRC_CHECKER=	ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)

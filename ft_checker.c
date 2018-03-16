@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 15:42:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:29:31 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,22 @@ void	ft_choose_actions(t_pile **pa, t_pile **pb, char *line)
 	}
 }
 
-int		ft_is_valid_action(char *line)
+int		ft_is_valid_action(t_win *win, char *line)
 {
+	t_list	*tmp;
+	char	*act;
+	
+	tmp = win->acts;
+	if (tmp)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = ft_lstnew(act = ft_strdup(line), ft_strlen(line));
+		free(act);
+	}
+	else
+		win->acts = ft_lstnew(line, ft_strlen(line));
+
 	if (ft_strequ(line, "sa") == 1 || ft_strequ(line, "sb") == 1)
 		return (1);
 	if (ft_strequ(line, "ss") == 1 || ft_strequ(line, "pa") == 1)
@@ -82,32 +96,51 @@ int		ft_check_sort(t_pile **pa, t_pile **pb)
 	return (1);
 }
 
-void	ft_handle_keys(int keycode, t_win *win)
+void	ft_exec_all(t_win *win)
+{
+	ft_choose_actions(&win->pa, &win->pb, win->acts->content);
+	free(win->acts->content);
+	free(win->acts);
+	win->acts = win->acts->next;
+	if (win->c_flag)
+		ft_print_graph(win->pa, win->pb, win);
+}
+
+int	ft_handle_keys(int keycode, t_win *win)
 {
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 12)
+		if (win->acts)
+			ft_exec_all(win);
+	return (1);
 }
 
-int		ft_execute_actions(t_pile **pile_a, t_pile **pile_b)
+int		ft_execute_actions(t_win *win)
 {
 	char	*line;
-	t_win	win;
 
 	line = NULL;
-	ft_initialize_window(&win, *pile_a);
+	win->acts = NULL;
 	while (get_next_line(0, &line) == 1)
 	{
-		if (!(ft_is_valid_action(line)))
+		if (!(ft_is_valid_action(win, line)))
 			return (-1);
-		ft_choose_actions(pile_a, pile_b, line);
-		mlx_key_hook(win.win, ft_handle_keys, pi);
 		free(line);
 	}
 	free(line);
-	if (!(ft_check_sort(pile_a, pile_b)))
+	ft_exec_all(win);
+	if (win->c_flag)
+	{
+		mlx_loop_hook(win->mlx, ft_handle_keypressing, win);
+		mlx_loop(win->mlx);
+	}
+	else
+		while (win->acts)
+			ft_exec_all(win);
+	if (!(ft_check_sort(&win->pa, &win->pb)))
 		return (0);
-	ft_free(pile_a);
-	ft_free(pile_b);
+	ft_free(&win->pa);
+	ft_free(&win->pb);
 	return (1);
 }

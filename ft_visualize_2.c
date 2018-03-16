@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pushswap_main.c                                 :+:      :+:    :+:   */
+/*   ft_visualize_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:37:16 by clanglai         ###   ########.fr       */
+/*   Created: 2018/03/16 12:14:04 by clanglai          #+#    #+#             */
+/*   Updated: 2018/03/16 13:01:43 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	main(int argc, char **argv)
+int		ft_tab_index(int *tab, int val, int len)
 {
-	t_win	win;
-	int		state;
+	int i;
 
-	win.pa = NULL;
-	win.pb = NULL;
-	if (argc > 1)
+	i = 0;
+	while (i < len)
 	{
-		if (argc != 2)
-			state = ft_create_a_pile(&win, argc, argv);
-		else
-			state = ft_create_a_pile_arg(&win, argv);
-		if (state == 0)
-		{
-			ft_printf("Error\n");
-			return (0);
-		}
-		ft_sort_pile(&win.pa, &win.pb);
+		if (tab[i] == val)
+			return (len - i);
+		i++;
 	}
-	ft_free(&win.pa);
-	ft_free(&win.pb);
-	return (0);
+	return (-1);
+}
+
+int		ft_handle_keypressing(t_win *win)
+{
+	mlx_hook(win->win, 2, (1L<<0), ft_handle_keys, win);
+	return (1);
 }

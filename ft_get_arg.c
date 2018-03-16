@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:50:10 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 12:53:09 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:36:50 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ t_pile	*ft_lstnewpile(int i)
 	return (new);
 }
 
-int		ft_create_a_pile(t_pile **start, int argc, char **argv)
+int		ft_create_a_pile(t_win *win, int argc, char **argv)
 {
 	t_pile	*tmp;
 	int		i;
 	int		number;
 
-	i = 1;
+	i = win->c_flag ? 2 : 1;
 	if (ft_check_int(argv[i]) == 0)
 		return (0);
-	*start = ft_lstnewpile(ft_atoi(argv[i++]));
-	tmp = *start;
+	win->pa = ft_lstnewpile(ft_atoi(argv[i++]));
+	tmp = win->pa;
 	while (i < argc)
 	{
 		if (ft_check_int(argv[i]) == 0)
 			return (0);
 		number = ft_atoi(argv[i]);
 		tmp->next = ft_lstnewpile(number);
-		if (ft_check_double_input(start, number) == 0)
+		if (ft_check_double_input(&win->pa, number) == 0)
 			return (0);
 		tmp = tmp->next;
 		i++;
@@ -67,7 +67,7 @@ int		ft_create_a_pile(t_pile **start, int argc, char **argv)
 	return (1);
 }
 
-int		ft_create_a_pile_arg(t_pile **start, char **argv)
+int		ft_create_a_pile_arg(t_win *win, char **argv)
 {
 	t_pile	*tmp;
 	int		i;
@@ -75,19 +75,19 @@ int		ft_create_a_pile_arg(t_pile **start, char **argv)
 	char	**tab;
 
 	i = 0;
-	tab = ft_strsplit(argv[1], ' ');
+	tab = ft_strsplit(argv[win->c_flag ? 2 : 1], ' ');
 	if (ft_check_int(tab[i]) == 0)
 		return (0);
 	free(tab[i]);
-	*start = ft_lstnewpile(ft_atoi(tab[i++]));
-	tmp = *start;
+	win->pa = ft_lstnewpile(ft_atoi(tab[i++]));
+	tmp = win->pa;
 	while (tab[i])
 	{
 		if (ft_check_int(tab[i]) == 0)
 			return (0);
 		number = ft_atoi(tab[i]);
 		tmp->next = ft_lstnewpile(number);
-		if (ft_check_double_input(start, number) == 0)
+		if (ft_check_double_input(&win->pa, number) == 0)
 			return (0);
 		tmp = tmp->next;
 		free(tab[i++]);
