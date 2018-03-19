@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 14:41:20 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:08:43 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:24:12 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 int	ft_find_max(t_pile **pa, int sort)
 {

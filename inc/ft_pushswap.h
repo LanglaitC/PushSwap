@@ -6,16 +6,16 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 15:17:14 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:24:00 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSHSWAP_H
 # define FT_PUSHSWAP_H
 
-# include "libft/inc/libft.h"
-# include "libft/inc/ft_printf.h"
-# include "minilibx/mlx.h"
+# include "../libft/inc/libft.h"
+# include "../libft/inc/ft_printf.h"
+# include "../minilibx/mlx.h"
 
 # define T_WIDTH 800
 # define T_HEIGHT 1200

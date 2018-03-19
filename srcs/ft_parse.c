@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:22:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:22:02 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:23:08 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 int	ft_check_double_input(t_pile **pile, int number)
 {

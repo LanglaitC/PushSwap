@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:50:10 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 13:49:29 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:23:04 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 int		ft_check_int(char *str)
 {

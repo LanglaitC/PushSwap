@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:33 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 14:45:34 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:24:27 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 void	ft_sort_pile_b_less_than_3(t_pile **pa, t_pile **pb, t_pile **re, int s)
 {

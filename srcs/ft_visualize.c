@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:42:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 15:17:11 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:25:02 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 void	ft_initialize_window(t_win *win, t_pile *pa)
 {

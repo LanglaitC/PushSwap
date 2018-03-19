@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 15:19:11 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:25:05 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:22:33 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 void		ft_attribute_sort(t_pile **pb, int sort, int state)
 {

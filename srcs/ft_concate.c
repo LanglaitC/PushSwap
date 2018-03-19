@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 14:01:58 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/15 12:51:35 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:23:00 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 void	ft_add_at_end(t_pile **start, int act, t_pile **pa, t_pile **pb)
 {

@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:14:04 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 14:36:42 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:24:59 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 int		ft_tab_index(int *tab, int val, int len)
 {

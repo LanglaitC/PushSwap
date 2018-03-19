@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker_main.c                                  :+:      :+:    :+:   */
+/*   ft_pushswap_main.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 15:08:55 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 15:09:44 by clanglai         ###   ########.fr       */
+/*   Created: 2018/01/07 15:26:58 by clanglai          #+#    #+#             */
+/*   Updated: 2018/03/19 16:25:16 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,25 +18,22 @@ int	main(int argc, char **argv)
 	int		state;
 
 	win.pa = NULL;
+	win.c_flag = 0;
 	win.pb = NULL;
-	win.c_flag = ft_strequ(argv[1], "-c");
 	if (argc > 1)
 	{
-		if (argc == 2 || (argc == 3 && win.c_flag))
-			state = ft_create_a_pile_arg(&win, argv);
-		else
+		if (argc != 2)
 			state = ft_create_a_pile(&win, argc, argv);
-		if (!state)
-			ft_printf("Error\n");
 		else
+			state = ft_create_a_pile_arg(&win, argv);
+		if (state == 0)
 		{
-			if (win.c_flag)
-				ft_initialize_window(&win, win.pa);
-			if ((state = ft_execute_actions(&win)) == 0)
-				ft_printf("KO\n");
-			else
-				ft_printf("%s\n", state == -1 ?  "Error" : "OK");
+			ft_printf("Error\n");
+			return (0);
 		}
+		ft_sort_pile(&win.pa, &win.pb);
 	}
+	ft_free(&win.pa);
+	ft_free(&win.pb);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/19 16:19:13 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/19 16:27:28 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC_NAME_CHECKER=	ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)
 OBJ_PUSHSWAP=$(SRC_PUSHWAP:.c=.o)
 OBJ_CHECKER=$(SRC_CHECKER:.c=.o)
-SRC_PUSHWAP= $(addprefix $(PATH_SRC)/, $(SRC_NAME_PUSHSWAP))
+SRC_PUSHSWAP= $(addprefix $(PATH_SRC)/, $(SRC_NAME_PUSHSWAP))
 SRC_CHECKER= $(addprefix $(PATH_SRC)/, $(SRC_NAME_CHECKER))
 SRC_BOTH= $(addprefix $(PATH_SRC)/, $(SRC_NAME_BOTH))
 

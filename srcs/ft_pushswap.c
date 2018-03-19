@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:22:22 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/16 15:15:30 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:23:14 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 static void	ft_sort_first_pile_a(t_pile **pa, t_pile **pb, t_pile **res, int s)
 {

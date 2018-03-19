@@ -6,11 +6,11 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 14:08:34 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/12 15:30:12 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:22:20 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#include "../inc/ft_pushswap.h"
 
 void	ft_sa(t_pile *pa)
 {
