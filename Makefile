@@ -6,7 +6,7 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/16 12:27:11 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/19 16:19:13 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ LIB_NAME=lftprintf
 LIBG_PATH=minilibx
 LIBG=lmlx
 FRAMEWORK1=OpenGl
+PATH_SRC=srcs
 FRAMEWORK2=AppKit
-SRC_BOTH=ft_actions_2.c \
+SRC_NAME_BOTH=ft_actions_2.c \
 			ft_checker.c \
 			ft_pushswap.c \
 			ft_sort.c \
@@ -34,27 +35,30 @@ SRC_BOTH=ft_actions_2.c \
 			ft_get_arg.c \
 			ft_visualize.c \
 			ft_visualize_2.c
-SRC_PUSHSWAP=	ft_pushswap_main.c
-SRC_CHECKER=	ft_checker_main.c
+SRC_NAME_PUSHSWAP=	ft_pushswap_main.c
+SRC_NAME_CHECKER=	ft_checker_main.c
 OBJ=$(SRC_BOTH:.c=.o)
 OBJ_PUSHSWAP=$(SRC_PUSHWAP:.c=.o)
 OBJ_CHECKER=$(SRC_CHECKER:.c=.o)
+SRC_PUSHWAP= $(addprefix $(PATH_SRC)/, $(SRC_NAME_PUSHSWAP))
+SRC_CHECKER= $(addprefix $(PATH_SRC)/, $(SRC_NAME_CHECKER))
+SRC_BOTH= $(addprefix $(PATH_SRC)/, $(SRC_NAME_BOTH))
 
 all : $(SRC_BOTH) $(PUSHSWAP_NAME) $(CHECKER_NAME)
 
 $(PUSHSWAP_NAME) : $(OBJ) $(OBJ_PUSHSWAP)
 	make -C libft
-	gcc -o $(PUSHSWAP_NAME) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) -$(LIB_NAME) \
-	-L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
+	make -C libft
+	gcc -o $(PUSHSWAP_NAME) $(FLAGS) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) \
+	-$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
 	$(FRAMEWORK2)
 
 $(CHECKER_NAME) : $(OBJ) $(OBJ_CHECKER)
 	make -C libft
 	make -C minilibx
-	gcc $(FLAGS) -o $(CHECKER_NAME) $(OBJ) $(OBJ_CHECKER) -L$(LIB_PATH) \
-	-$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
-	$(FRAMEWORK2)
-
+	gcc $(FLAGS) -o $(CHECKER_NAME) $(FLAGS) $(OBJ) $(OBJ_CHECKER) \
+	-L$(LIB_PATH) -$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework \
+	$(FRAMEWORK1) -framework $(FRAMEWORK2) 
 %.o : %.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
