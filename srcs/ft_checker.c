@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:05:47 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/19 16:22:52 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:25:29 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_is_valid_action(t_win *win, char *line)
 {
 	t_list	*tmp;
 	char	*act;
-	
+
 	tmp = win->acts;
 	act = ft_strdup(line);
 	if (tmp)
@@ -67,7 +67,7 @@ int		ft_is_valid_action(t_win *win, char *line)
 		return (1);
 	if (ft_strequ(line, "rra") == 1 || ft_strequ(line, "rrb") == 1)
 		return (1);
-	return (ft_strequ(line, "rrr") == 1 ? 1 :0);
+	return (ft_strequ(line, "rrr") == 1 ? 1 : 0);
 }
 
 int		ft_check_sort(t_pile **pa, t_pile **pb)
@@ -88,60 +88,36 @@ int		ft_check_sort(t_pile **pa, t_pile **pb)
 		return (0);
 	tmp = *pb;
 	if (tmp)
-	{
 		return (0);
-	}
 	return (1);
 }
 
-void	ft_exec_all(t_win *win)
+void	ft_execute_actions_2(t_win *win)
 {
-	t_list *next;
-
-	ft_choose_actions(&win->pa, &win->pb, win->acts->content);
-	next = win->acts->next;
-	free(win->acts->content);
-	free(win->acts);
-	win->acts = next;
-	if (win->c_flag)
-		ft_print_graph(win->pa, win->pb, win);
-}
-
-int		ft_execute_actions(t_win *win)
-{
-	char	*line;
-	int		i;
-
-	line = NULL;
-	win->acts = NULL;
-	i = 0;
-	while (get_next_line(0, &line) == 1)
-	{
-		if (!(ft_is_valid_action(win, line)))
-			return (-1);
-	//	ft_choose_actions(&win->pa, &win->pb, line);
-		free(line);
-		i++;
-	}
-//	printf("Coups = %d\n", i);
-	free(line);
-	i = 0;
 	if (win->c_flag)
 	{
 		mlx_loop_hook(win->mlx, ft_handle_keypressing, win);
 		mlx_loop(win->mlx);
 	}
 	else
-	{
 		while (win->acts)
-		{
 			ft_exec_all(win);
-			i++;
-		}
+}
+
+int		ft_execute_actions(t_win *win)
+{
+	char	*line;
+
+	line = NULL;
+	win->acts = NULL;
+	while (get_next_line(0, &line) == 1)
+	{
+		if (!(ft_is_valid_action(win, line)))
+			return (-1);
+		free(line);
 	}
-//	printf("Coups 2 = %d\n", i);
-//	printf("SORT\n");
-	//ft_print_state(&win->pa, &win->pb);
+	free(line);
+	ft_execute_actions_2(win);
 	if (!(ft_check_sort(&win->pa, &win->pb)))
 		return (0);
 	ft_free(&win->pa);

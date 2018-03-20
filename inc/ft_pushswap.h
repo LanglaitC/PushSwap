@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:39:07 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:00 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:23:23 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "../minilibx/mlx.h"
 
 # define T_WIDTH 800
-# define T_HEIGHT 1200
+# define T_HEIGHT 1300
+# define LIM 1000
 
 typedef	struct		s_pile
 {
@@ -87,6 +88,7 @@ int					ft_count_inv_sorted(t_pile **pile);
 int					ft_is_next(t_pile **pa);
 void				ft_attribute_sort(t_pile **pb, int sort, int state);
 int					ft_find_value_below(t_pile **pa, int x, int s);
+void				ft_choose_actions(t_pile **pa, t_pile **pb, char *line);
 int					ft_check_single_inv_sort(t_pile **pb, int s);
 int					ft_find_value_above(t_pile **pa, int x, int s);
 int					ft_find_min_index(t_pile **pb, t_insert *max, int len);

@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:50:10 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/19 16:23:04 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:17:15 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,18 @@ int		ft_check_int(char *str)
 {
 	int i;
 	int state;
+	int j;
+	int val;
 
 	state = 1;
 	i = 0;
+	j = 0;
+	val = ft_atoi(str);
+	if ((j = ft_strlen(ft_strlchr(str, '-'))) > 10)
+		return (0);
+	if (j == 10 && ((ft_count_char_start(str, '-') % 2 && val > 0)
+				|| (!(ft_count_char_start(str, '-') % 2) && val < 0)))
+		return (0);
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0 && (str[i] != '-' || state != 1))

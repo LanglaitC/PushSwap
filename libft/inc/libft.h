@@ -6,7 +6,7 @@
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:29:17 by clanglai          #+#    #+#             */
-/*   Updated: 2018/02/18 15:02:23 by clanglai         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:25:51 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ char					*ft_strncpy(char *dst, const char *src, size_t len);
 char					*ft_strcat(char *s1, const char *s2);
 char					*ft_strncat(char *s1, const char *s2, size_t n);
 char					*ft_strchr(const char *s, int c);
+char					*ft_strlchr(char *s, char c);
 char					*ft_strrchr(const char *s, int c);
 char					*ft_strstr(const char *haystack, const char *needle);
+int						ft_count_char_start(char *str, char c);
 char					*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
 void					ft_sort_int_tab(int *tab, int len);

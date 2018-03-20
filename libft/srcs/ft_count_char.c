@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_count_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clanglai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 12:12:06 by clanglai          #+#    #+#             */
-/*   Updated: 2018/03/20 15:32:27 by clanglai         ###   ########.fr       */
+/*   Created: 2018/03/20 15:19:01 by clanglai          #+#    #+#             */
+/*   Updated: 2018/03/20 15:29:41 by clanglai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int	ft_count_char_start(char *str, char c)
 {
-	int		i;
-	long	res;
-	int		sign;
+	int i;
+	int j;
 
-	sign = 1;
 	i = 0;
-	res = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' || str[i] == '\v'
-			|| str[i] == '\n' || str[i] == '\f')
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	j = 0;
+	while (str[i] && j == i)
 	{
-		sign = -1;
+		if (str[i] == c)
+			j++;
 		i++;
 	}
-	while (str[i] != '\0')
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (res * sign);
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	return (i - 1);
 }

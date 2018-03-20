@@ -6,19 +6,21 @@
 #    By: clanglai <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/07 15:30:47 by clanglai          #+#    #+#              #
-#    Updated: 2018/03/19 16:27:28 by clanglai         ###   ########.fr        #
+#    Updated: 2018/03/20 16:15:52 by clanglai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-
+cyan = /bin/echo -e "\x1b[36m\#\# $1\x1b[0m"
 FLAGS=-Wall -Wextra -Werror
 PUSHSWAP_NAME=push_swap
 CHECKER_NAME=checker
+LIBC=libft/libftprintf.a
+LIBG=minilibx/mlx.a
 LIB_PATH =libft
 LIB_NAME=lftprintf
 LIBG_PATH=minilibx
-LIBG=lmlx
+LIBG_NAME=lmlx
 FRAMEWORK1=OpenGl
 PATH_SRC=srcs
 FRAMEWORK2=AppKit
@@ -44,30 +46,41 @@ SRC_PUSHSWAP= $(addprefix $(PATH_SRC)/, $(SRC_NAME_PUSHSWAP))
 SRC_CHECKER= $(addprefix $(PATH_SRC)/, $(SRC_NAME_CHECKER))
 SRC_BOTH= $(addprefix $(PATH_SRC)/, $(SRC_NAME_BOTH))
 
-all : $(SRC_BOTH) $(PUSHSWAP_NAME) $(CHECKER_NAME)
+all : $(LIBC) $(LIBG) $(SRC_BOTH) $(PUSHSWAP_NAME) $(CHECKER_NAME)
 
-$(PUSHSWAP_NAME) : $(OBJ) $(OBJ_PUSHSWAP)
-	make -C libft
-	make -C libft
-	gcc -o $(PUSHSWAP_NAME) $(FLAGS) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) \
-	-$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework $(FRAMEWORK1) -framework \
-	$(FRAMEWORK2)
+$(LIBC):
+	@make -C $(LIB_PATH)
+
+$(LIBG):
+	@make -C $(LIBG_PATH)
+
+$(PUSHSWAP_NAME): $(OBJ) $(OBJ_PUSHSWAP)
+	@gcc -o $(PUSHSWAP_NAME) $(FLAGS) $(OBJ) $(SRC_PUSHSWAP) -L$(LIB_PATH) \
+	-$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG_NAME) -framework $(FRAMEWORK1) \
+	-framework $(FRAMEWORK2)
+	@echo "\033[1;34m$(PUSHSWAP_NAME)\033[1;32m...compiled\t\t✓\033[0m"
 
 $(CHECKER_NAME) : $(OBJ) $(OBJ_CHECKER)
-	make -C libft
-	make -C minilibx
-	gcc $(FLAGS) -o $(CHECKER_NAME) $(FLAGS) $(OBJ) $(OBJ_CHECKER) \
-	-L$(LIB_PATH) -$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG) -framework \
-	$(FRAMEWORK1) -framework $(FRAMEWORK2) 
+	@gcc $(FLAGS) -o $(CHECKER_NAME) $(FLAGS) $(OBJ) $(OBJ_CHECKER) \
+	-L$(LIB_PATH) -$(LIB_NAME) -L$(LIBG_PATH) -$(LIBG_NAME) -framework \
+	$(FRAMEWORK1) -framework $(FRAMEWORK2)
+	@echo "\033[1;34m$(CHECKER_NAME)\033[1;32m...compiled\t\t✓\033[0m"
+
 %.o : %.c
-	$(CC) $(FLAGS) -o $@ -c $<
+	@$(CC) $(FLAGS) -o $@ -c $<
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
+	@make clean -C $(LIB_PATH)
+	@echo "\033[1;34mpush_swap\033[1;33m obj files removed\t\033[1;31m✓\033[0m"
+	@echo "\033[1;34mchecker\033[1;33m obj files removed\t\033[1;31m✓\033[0m"
 
 fclean : clean
-	rm -rf $(PUSHSWAP_NAME) $(CHECKER_NAME)
+	@rm -rf $(PUSHSWAP_NAME) $(CHECKER_NAME)
+	@make fclean -C $(LIB_PATH)
+	@echo "\033[1;34mpush_swap\033[1;33m exec removed\t\t\033[1;31m✓\033[0m"
+	@echo "\033[1;34mchecker\033[1;33m exec removed\t\t\033[1;31m✓\033[0m"
 
 re:
-	make fclean
-	make
+	@make fclean
+	@make
